@@ -1,0 +1,44 @@
+.navHero {
+  /* Transparente sobre Hero */
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.navHero .logo {
+  color: #ffffff !important;
+}
+
+.navHero .navLink {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.navHero .navLink:hover {
+  color: #ffffff !important;
+}
+
+.navHero .hamburger span {
+  background: #ffffff !important;
+}
+
+.navHero .langBtn {
+  color: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.navHero .langBtnActive {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+/* Base link styles to combine with page.module.css if needed */
+.navLink {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.navLink:hover {
+  color: var(--violeta);
+}

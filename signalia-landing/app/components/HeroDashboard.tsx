@@ -1,90 +1,96 @@
 "use client";
 
 import React from "react";
-import styles from "./HeroDashboard.module.css";
+import styles from "./hero.module.css";
+import glassStyles from "@/styles/glass.module.css";
 import { useCounter } from "@/hooks/useCounter";
 
-type ColorToken = "verde" | "violeta" | "lavanda";
+type ColorToken = "verde" | "violeta" | "lavanda" | "indigo";
 
 const colorMap: Record<ColorToken, string> = {
   verde: "var(--verde)",
   violeta: "var(--violeta)",
   lavanda: "var(--lavanda)",
+  indigo: "rgba(83, 74, 183, 0.85)", // Indigo claro/translucent for contrast
 };
 
 interface DashboardBarProps {
   label: string;
-  value: string | number;
+  target: number;
   percentage: number;
   delay: number;
   color: ColorToken;
-  counterRef: React.Ref<HTMLDivElement>;
 }
 
-function DashboardBar({ label, value, percentage, delay, color, counterRef }: DashboardBarProps) {
+function DashboardBar({ label, target, percentage, delay, color }: DashboardBarProps) {
+  const [counterRef, value] = useCounter(target, 1500, "%", delay);
+
   return (
-    <div className={styles.barRow} ref={counterRef}>
-      <div className={styles.barHeader}>
-        <span className={styles.barLabel}>{label}</span>
-        <span className={styles.barValue} style={{ color: colorMap[color] }}>
-          +{value}
-        </span>
-      </div>
+    <div className={styles.dashboardBarRow} ref={counterRef as React.Ref<HTMLDivElement>}>
+      <span 
+        className={styles.barLabel}
+        style={{ fontSize: label.length > 10 ? '0.75rem' : undefined, whiteSpace: 'nowrap' }}
+      >
+        {label}
+      </span>
       <div className={styles.barTrack}>
         <div
           className={styles.barFill}
-          style={{
-            backgroundColor: colorMap[color],
-            width: `${percentage}%`,
-            animation: `fillBar 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
-            animationDelay: `${delay}ms`
-          }}
-        />
+          style={
+            {
+              "--target-width": `${percentage}%`,
+              backgroundColor: colorMap[color],
+              animationDelay: `${delay}ms`,
+            } as React.CSSProperties
+          }
+        >
+          <span className={styles.barValue}>+{value}</span>
+        </div>
       </div>
     </div>
   );
 }
 
 export function HeroDashboard() {
-  const [searchesRef, searchesVal] = useCounter(450, 2000, "%", 1400);
-  const [clicksRef, clicksVal] = useCounter(280, 2000, "%", 1400);
-  const [callsRef, callsVal] = useCounter(180, 2000, "%", 1400);
-
   return (
-    <div className={styles.dashboard}>
+    <div className={`${styles.dashboardCard} ${glassStyles.glassCard}`}>
       <div className={styles.dashboardHeader}>
-        <span className={styles.dashboardDot} />
+        <span className={styles.dashboardHeaderDot} />
         GBP Performance
       </div>
       <div className={styles.dashboardBars}>
         <DashboardBar 
-          label="Searches" 
-          value={searchesVal} 
-          percentage={95} 
+          label="Búsquedas" 
+          target={187} 
+          percentage={90} 
           delay={800} 
           color="verde" 
-          counterRef={searchesRef as React.Ref<HTMLDivElement>}
         />
         <DashboardBar 
-          label="Clicks" 
-          value={clicksVal} 
+          label="Clics" 
+          target={134} 
           percentage={75} 
           delay={1000} 
           color="violeta" 
-          counterRef={clicksRef as React.Ref<HTMLDivElement>}
         />
         <DashboardBar 
-          label="Calls" 
-          value={callsVal} 
-          percentage={60} 
+          label="Ventas" 
+          target={28} 
+          percentage={30} 
           delay={1200} 
           color="lavanda" 
-          counterRef={callsRef as React.Ref<HTMLDivElement>}
+        />
+        <DashboardBar 
+          label="Nuevos clientes" 
+          target={43} 
+          percentage={45} 
+          delay={1400} 
+          color="indigo" 
         />
       </div>
       <div className={styles.dashboardFooter}>
-        <span>Last 30 days</span>
-        <span className={styles.growing}>↑ Growing</span>
+        <span className={styles.dashboardPeriod}>Últimos 45 días</span>
+        <span className={styles.dashboardBadge}>↑ Creciendo</span>
       </div>
     </div>
   );
