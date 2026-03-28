@@ -8,18 +8,17 @@ export function useCounter(target: number, duration: number, suffix: string, del
   const counted = useRef(false);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (prefersReducedMotion) {
-      setCount(target);
-      counted.current = true;
-      return;
-    }
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !counted.current) {
           counted.current = true;
+
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (prefersReducedMotion) {
+            setCount(target);
+            return;
+          }
+
           setTimeout(() => {
             const start = 0;
             const startTime = performance.now();

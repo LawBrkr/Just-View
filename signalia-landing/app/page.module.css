@@ -381,6 +381,19 @@
   gap: 24px;
 }
 
+.tabsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.tabInactive {
+  background-color: transparent;
+  border-color: var(--border-light);
+  color: var(--text-secondary);
+}
+
 .serviceCard {
   background: var(--card);
   border-radius: var(--radius-xl);
@@ -389,6 +402,8 @@
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .serviceCard::before {

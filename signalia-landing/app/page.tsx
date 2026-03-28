@@ -1,6 +1,5 @@
 import { cookies } from "next/headers";
 import ClientIntlProvider from "./components/ClientIntlProvider";
-import styles from "./page.module.css";
 
 import esMessages from "../messages/es.json";
 import enMessages from "../messages/en.json";

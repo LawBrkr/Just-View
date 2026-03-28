@@ -1,0 +1,21 @@
+{
+  "sprint": "sprint3",
+  "runDate": "2026-03-28T22:42:34.236Z",
+  "url": "http://localhost:3000/",
+  "summary": {
+    "performance": 90,
+    "fcp": "1.1 s",
+    "lcp": "3.5 s",
+    "tbt": "130 ms",
+    "cls": "0",
+    "si": "2.2 s",
+    "tti": "3.5 s"
+  },
+  "rawScores": {
+    "performance": 0.9,
+    "fcp": 1061.9374,
+    "lcp": 3478.8747999999996,
+    "tbt": 128.03129999999987,
+    "cls": 0
+  }
+}

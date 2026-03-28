@@ -7,9 +7,9 @@ export function useCounter(
   duration: number,
   suffix: string,
   delay: number
-): [React.RefObject<any>, string] {
+): [React.RefObject<HTMLElement | null>, string] {
   const [value, setValue] = useState(`0${suffix}`);
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
 
   useEffect(() => {

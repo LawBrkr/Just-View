@@ -22,7 +22,6 @@ type ServiceData = {
 type ServicesDict = {
   signal: ServiceData;
   alia: ServiceData;
-  [key: string]: any; // for other fields if needed
 };
 
 export default function ServiceTabs({ dict }: { dict: ServicesDict }) {
@@ -36,24 +35,22 @@ export default function ServiceTabs({ dict }: { dict: ServicesDict }) {
 
   return (
     <div className={styles.serviceTabsWrapper}>
-      <div className={styles.tabsContainer} style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '32px' }}>
-        <button 
+      <div className={styles.tabsContainer}>
+        <button
           onClick={() => setActiveTab("signal")}
-          className={`btn ${activeTab === "signal" ? "btn-primary" : "btn-secondary"}`}
-          style={activeTab !== "signal" ? { backgroundColor: 'transparent', borderColor: 'var(--border-light)', color: 'var(--text-secondary)' } : {}}
+          className={`btn ${activeTab === "signal" ? "btn-primary" : `btn-secondary ${styles.tabInactive}`}`}
         >
           {dict.signal.label}
         </button>
-        <button 
+        <button
           onClick={() => setActiveTab("alia")}
-          className={`btn ${activeTab === "alia" ? "btn-primary" : "btn-secondary"}`}
-          style={activeTab !== "alia" ? { backgroundColor: 'transparent', borderColor: 'var(--border-light)', color: 'var(--text-secondary)' } : {}}
+          className={`btn ${activeTab === "alia" ? "btn-primary" : `btn-secondary ${styles.tabInactive}`}`}
         >
           {dict.alia.label}
         </button>
       </div>
 
-      <div className={`${styles.serviceCard} ${activeTab === "signal" ? styles.serviceSignal : styles.serviceAlia}`} style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <div className={`${styles.serviceCard} ${activeTab === "signal" ? styles.serviceSignal : styles.serviceAlia}`}>
         <div className={styles.serviceIcon}>
           {activeTab === "signal" ? (
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
