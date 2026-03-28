@@ -1,0 +1,19 @@
+.glassCard {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.glassNav {
+  background: rgba(26, 25, 69, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glassCard { background: rgba(26, 25, 69, 0.95); }
+  .glassNav  { background: rgba(26, 25, 69, 0.98); }
+}

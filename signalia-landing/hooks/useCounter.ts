@@ -2,12 +2,20 @@
 
 import { useState, useEffect, useRef } from "react";
 
-export function useCounter(end: number, duration = 2000, suffix = "", delay = 0) {
+export function useCounter(target: number, duration: number, suffix: string, delay: number = 0) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const counted = useRef(false);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      setCount(target);
+      counted.current = true;
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !counted.current) {
@@ -19,7 +27,7 @@ export function useCounter(end: number, duration = 2000, suffix = "", delay = 0)
               const elapsed = now - startTime;
               const progress = Math.min(elapsed / duration, 1);
               const eased = 1 - Math.pow(1 - progress, 3);
-              setCount(Math.floor(start + (end - start) * eased));
+              setCount(Math.floor(start + (target - start) * eased));
               if (progress < 1) requestAnimationFrame(step);
             };
             requestAnimationFrame(step);
@@ -34,7 +42,7 @@ export function useCounter(end: number, duration = 2000, suffix = "", delay = 0)
     }
     
     return () => observer.disconnect();
-  }, [end, duration, delay]);
+  }, [target, duration, delay]);
 
   // Return as tuple instead of object to avoid ESLint false positives
   return [ref, `${count}${suffix}`] as const;
