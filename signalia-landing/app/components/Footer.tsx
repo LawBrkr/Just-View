@@ -1,5 +1,5 @@
 import styles from "../page.module.css";
-import esMessages from "../../translations/es.json";
+import esMessages from "../../messages/es.json";
 
 type FooterDict = typeof esMessages.footer;
 
