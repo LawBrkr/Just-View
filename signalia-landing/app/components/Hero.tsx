@@ -24,10 +24,10 @@ export default function Hero() {
           </p>
           <div className={styles.heroCtas}>
             <a href="#servicios" className="btn btn-primary">
-              Nuestros servicios
+              {t("hero.cta.secondary")}
             </a>
             <a href="#contacto" className="btn btn-secondary" style={{ color: "white", borderColor: "rgba(255,255,255,0.2)"}}>
-              Hablar con un experto
+              {t("hero.cta.primary")}
             </a>
           </div>
         </div>

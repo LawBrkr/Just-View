@@ -27,7 +27,12 @@ function DashboardBar({ label, target, percentage, delay, color }: DashboardBarP
 
   return (
     <div className={styles.dashboardBarRow} ref={counterRef as React.Ref<HTMLDivElement>}>
-      <span className={styles.barLabel}>{label}</span>
+      <span 
+        className={styles.barLabel}
+        style={{ fontSize: label.length > 10 ? '0.75rem' : undefined, whiteSpace: 'nowrap' }}
+      >
+        {label}
+      </span>
       <div className={styles.barTrack}>
         <div
           className={styles.barFill}
@@ -76,7 +81,7 @@ export function HeroDashboard() {
           color="lavanda" 
         />
         <DashboardBar 
-          label="Nuevos cli" 
+          label="Nuevos clientes" 
           target={43} 
           percentage={45} 
           delay={1400} 
