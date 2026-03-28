@@ -76,6 +76,9 @@
         "value": "10-min demo",
         "label": "We show you how many clients you're losing today"
       }
+    },
+    "rating": {
+      "label": "reviews on Google"
     }
   },
   "services": {

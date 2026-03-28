@@ -76,6 +76,9 @@
         "value": "Demo 10 min",
         "label": "Te mostramos cuántos clientes pierdes hoy"
       }
+    },
+    "rating": {
+      "label": "reseñas en Google"
     }
   },
   "services": {

@@ -41,7 +41,7 @@ export default function Hero() {
             alignItems: "flex-start",
             gap: "4px"
           }}>
-            <span>★ {socialProof.rating} · {socialProof.reviewCount} reseñas en Google</span>
+            <span>★ {socialProof.rating} · {socialProof.reviewCount} {t("hero.rating.label")}</span>
             <span style={{ fontSize: "11px", opacity: 0.8 }}>{socialProof.zones.join(" · ")}</span>
           </div>
         </div>
