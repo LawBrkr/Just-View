@@ -1,0 +1,137 @@
+/* HeroDashboard.module.css */
+
+.dashboard {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  color: var(--text-inverse);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba(83, 74, 183, 0.25);
+  
+  /* 600ms: Entrada del dashboard (SlideInRight) */
+  animation: slideInRight 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 600ms;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dashboardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 16px;
+}
+
+.dashboardDot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--verde);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--verde);
+}
+
+.dashboardBars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.barRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.barHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.barLabel {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.barValue {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.barTrack {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 4px;
+  transform-origin: left;
+  transform: scaleX(0);
+  /* Fallback to be overwritten by React inline style */
+}
+
+/* 800ms - 1200ms: Carga escalonada de las barras de progreso */
+@keyframes fillBar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.dashboardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.growing {
+  color: var(--verde);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  
+  /* 1800ms: Pulso sutil en el badge "Growing ↑" */
+  animation: pulse 1000ms cubic-bezier(0.16, 1, 0.3, 1) 2;
+  animation-delay: 1800ms;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; text-shadow: 0 0 8px var(--verde); }
+  100% { transform: scale(1); opacity: 1; }
+}
