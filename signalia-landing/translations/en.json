@@ -1,0 +1,297 @@
+{
+  "business": {
+    "name": "Signalia",
+    "description": "Tech consulting — Digital visibility + AI automation for SMBs in Mexico City",
+    "url": "https://signalia.com.mx",
+    "email": "hola@signalia.com.mx",
+    "city": "Ciudad de México",
+    "priceRange": "$$",
+    "timezone": "America/Mexico_City",
+    "whatsappAriaLabel": "WhatsApp",
+    "neighborhoods": ["Polanco", "Condesa", "Roma", "Coyoacán", "Del Valle", "Santa Fe"]
+  },
+  "nav": {
+    "skipToContent": "Skip to content",
+    "links": {
+      "services": "Services",
+      "process": "How It Works",
+      "results": "Results",
+      "pricing": "Pricing",
+      "faq": "FAQ"
+    },
+    "cta": {
+      "label": "Book your demo"
+    },
+    "lang": {
+      "esLabel": "Esp",
+      "enLabel": "Eng",
+      "esAriaLabel": "Español",
+      "enAriaLabel": "English",
+      "menuAriaLabel": "Menu"
+    }
+  },
+  "hero": {
+    "badge": {
+      "text": "Tech Consulting · Mexico City"
+    },
+    "title": {
+      "line1": "Your strongest signal",
+      "line2": "in digital."
+    },
+    "subtitle": "We make sure customers find you on Google and your business runs on its own. Digital visibility + AI automation for local businesses in Mexico City.",
+    "cta": {
+      "primary": "Book your free demo",
+      "secondary": "Explore our services"
+    },
+    "metric": {
+      "value": "+450%",
+      "label": "Google visibility"
+    },
+    "bars": {
+      "searches": "Searches",
+      "clicks": "Profile clicks",
+      "calls": "Calls"
+    },
+    "card": {
+      "footer": {
+        "period": "Last month",
+        "trend": "↑ Growing"
+      }
+    },
+    "stats": {
+      "location": {
+        "value": "Polanco",
+        "label": "Condesa · Roma · Del Valle"
+      },
+      "services": {
+        "value": "2 services",
+        "label": "Signal + Alia under one roof"
+      },
+      "demo": {
+        "value": "10-min demo",
+        "label": "We show you how many clients you're losing today"
+      }
+    }
+  },
+  "services": {
+    "label": "Our services",
+    "title": {
+      "line1": "Two services, one goal:",
+      "line2": "grow your business"
+    },
+    "subtitle": "The Signalia name splits into two units that cover exactly what your business needs today.",
+    "signal": {
+      "label": "Signal",
+      "title": "Local Visibility",
+      "description": "Your business appears first on Google when someone searches for what you sell. Optimized profile, managed reviews, weekly posts that attract real customers.",
+      "features": {
+        "optimization": "Full Google Business Profile optimization",
+        "reviews": "Review management & smart responses",
+        "posts": "Weekly AI-powered posts",
+        "reports": "Monthly performance reports"
+      },
+      "link": "See Signal plans →",
+      "cta": "Start with Signal"
+    },
+    "alia": {
+      "label": "Alia",
+      "title": "AI Automation",
+      "description": "We eliminate the tasks that waste your time and don't make you money. Automated flows for customer service, inventory, follow-ups, and reports that work on their own.",
+      "features": {
+        "responses": "Automated customer responses",
+        "followup": "Auto follow-up workflows",
+        "reports": "AI-generated reports",
+        "integration": "Integration with your current tools"
+      },
+      "link": "See Alia plans →",
+      "cta": "Start with Alia"
+    }
+  },
+  "process": {
+    "label": "How it works",
+    "title": "From first call to measurable results",
+    "subtitle": "No jargon, no long contracts, no surprises. It's that simple to get started.",
+    "steps": {
+      "audit": {
+        "title": "10-minute audit",
+        "description": "We show you in a quick video call how your business looks on Google today versus the competition. No commitment, no cost."
+      },
+      "plan": {
+        "title": "Custom plan",
+        "description": "We create a specific action plan for your business with clear goals, defined timelines, and results you can measure every week."
+      },
+      "results": {
+        "title": "Visible results",
+        "description": "We execute, measure, and adjust. You receive monthly reports with clear numbers: more searches, more clicks, more clients, fewer wasted hours."
+      }
+    }
+  },
+  "results": {
+    "label": "Real results",
+    "title": "Numbers that speak for themselves",
+    "metrics": {
+      "searches": {
+        "suffix": "%",
+        "label": "of local searches end up on the Google profile — not the website"
+      },
+      "hours": {
+        "suffix": " hrs",
+        "label": "per week saved by automating repetitive tasks"
+      },
+      "margin": {
+        "suffix": "%",
+        "label": "operating margin — digital service with no inventory costs"
+      }
+    },
+    "source": "Source: Google / BrightLocal, 2024",
+    "quote": "\u201CYour Google profile is your digital storefront. We\u2019re going to make it irresistible.\u201D"
+  },
+  "personas": {
+    "label": "Who is Signalia for?",
+    "title": "If you identify with any of them, you need to talk to us",
+    "entry": {
+      "label": "Entry point:"
+    },
+    "carlos": {
+      "name": "Carlos Mendoza",
+      "role": "Restaurant owner in Condesa",
+      "detail": "42 years old · Bills $180k MXN/month · 12 employees. He knows he needs \u201Csomething online\u201D but doesn\u2019t know what. No time.",
+      "entry": "Signal → upsell to Alia in 2 months"
+    },
+    "maria": {
+      "name": "María F. López",
+      "role": "Dental clinic director in Polanco",
+      "detail": "35 years old · 3 dentists · Overwhelmed receptionist · Losing appointments. Looking for someone to solve it, not explain it.",
+      "entry": "Alia (automate appointments) → upsell to Signal"
+    },
+    "james": {
+      "name": "James T.",
+      "role": "Boutique hotel owner in the Roma neighborhood, CDMX.",
+      "detail": "50 years old · 15 rooms · Wants more reviews · Pays in USD. Needs clear, monthly reports.",
+      "entry": "Signal (GBP + reviews) → upsell to Alia"
+    },
+    "andres": {
+      "name": "Andrés Navarro",
+      "role": "Tech startup founder",
+      "detail": "26 years old · Launched 6 months ago. Urgently needs to automate operations to scale without hiring more people.",
+      "entry": "Alia → upsell to Signal"
+    }
+  },
+  "trust": {
+    "label": "Tools we use",
+    "items": [
+      "Google Business Profile",
+      "Make / Zapier",
+      "ChatGPT / Claude",
+      "Canva Pro",
+      "BrightLocal"
+    ]
+  },
+  "pricing": {
+    "label": "Plans & pricing",
+    "title": "Clear investment, measurable results",
+    "subtitle": "No fine print, no surprises. All plans include monthly reports with real metrics.",
+    "signal": {
+      "badge": "Signal",
+      "name": "Activation",
+      "amount": "$2,500",
+      "period": "MXN · one-time",
+      "features": [
+        "Full Google profile optimization",
+        "Professional photos & description",
+        "Categories & hours optimized",
+        "5 initial posts",
+        "Response to existing reviews"
+      ],
+      "cta": "Start with Signal"
+    },
+    "combo": {
+      "badge": "Signal + Alia",
+      "popular": "Most popular",
+      "name": "Full Monthly Management",
+      "amount": "$7,500",
+      "period": "MXN / month",
+      "features": [
+        "Everything in Activation included",
+        "4 weekly posts",
+        "Full review management",
+        "Automated customer responses",
+        "Auto follow-up workflows",
+        "AI-generated monthly report"
+      ],
+      "cta": "Book your demo"
+    },
+    "alia": {
+      "badge": "Alia",
+      "name": "AI Automation",
+      "amount": "$6,000",
+      "period": "MXN / month",
+      "features": [
+        "Current process audit",
+        "Automated workflow design",
+        "Implementation with Make/Zapier",
+        "Smart customer chatbot",
+        "Weekly automatic reports",
+        "Ongoing support & adjustments"
+      ],
+      "cta": "Start with Alia"
+    }
+  },
+  "faq": {
+    "label": "Frequently asked questions",
+    "title": "Straight answers, no runaround",
+    "items": [
+      {
+        "question": "How soon will I see results?",
+        "answer": "With Signal, changes to your Google profile are visible within 48 hours. The real impact on searches and clicks shows in the first 2–4 weeks. With Alia, automated workflows are operational from the first week."
+      },
+      {
+        "question": "Do I need to know about technology?",
+        "answer": "No. We handle everything technical. You just need to give us access to your accounts and 10 minutes for the initial audit. Signalia works as your tech partner — you focus on your business."
+      },
+      {
+        "question": "What if I don't have a Google Business profile?",
+        "answer": "We create it from scratch. Activation includes the complete creation of your profile with full optimization from day one. You don't need anything prior."
+      },
+      {
+        "question": "Is there a minimum commitment?",
+        "answer": "No. Our monthly services come with no lock-in contract. We're confident the results speak for themselves. If at any point you decide to pause, you can do so without penalty."
+      },
+      {
+        "question": "Which areas of Mexico City do you cover?",
+        "answer": "We primarily work with businesses in Polanco, Condesa, Roma, Coyoacán, Del Valle, and Santa Fe. If your business is in another area of CDMX, reach out — we can probably help."
+      },
+      {
+        "question": "Do you also work in English?",
+        "answer": "Yes! We work with international businesses in Mexico City — franchises, boutique hotels, and restaurants with foreign clients. Communication and reports can be fully in English."
+      }
+    ]
+  },
+  "cta": {
+    "label": "Ready to grow?",
+    "title": "In 10 minutes I'll show you how many clients you're losing today.",
+    "subtitle": "Book a free audit of your digital presence. No commitment, no cost, no fine print.",
+    "button": "Book your free demo",
+    "email": "or write to us at hola@signalia.com.mx"
+  },
+  "footer": {
+    "tagline": "Your strongest signal in digital.",
+    "meta": "Tech consulting · Digital visibility + AI automation",
+    "services": {
+      "title": "Services",
+      "signal": "Signal — Visibility",
+      "alia": "Alia — Automation",
+      "pricing": "Plans & pricing"
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "zones": {
+      "title": "CDMX Zones",
+      "first": "Polanco · Condesa · Roma",
+      "second": "Del Valle · Santa Fe · Coyoacán"
+    },
+    "copyright": "© 2026 Signalia. All rights reserved.",
+    "slogan": "Visible. Smart. Automatic."
+  }
+}
