@@ -84,6 +84,18 @@
   animation-delay: 2200ms;
 }
 
+@media (max-width: 768px) {
+  .heroCtas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .heroCtas .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
 .heroDashboardWrapper {
   animation: heroSlideInRight 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: 600ms;
