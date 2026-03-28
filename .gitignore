@@ -1,0 +1,8 @@
+signalia-landing/node_modules/
+signalia-landing/.next/
+signalia-landing/.vercel/
+signalia-landing/.env.local
+*.local
+
+# Claude Code internal settings (may contain tokens/secrets)
+.claude/
