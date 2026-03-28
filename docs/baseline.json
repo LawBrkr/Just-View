@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "description": "Signalia Lighthouse baseline — auto-generated",
+    "script": "scripts/lighthouse-baseline.mjs",
+    "roadmap": "Hybrid Roadmap — Dark Premium Hero Sprint",
+    "timestamp": "2026-03-28T20:16:33.004Z",
+    "url": "http://localhost:3000"
+  },
+  "scores": {
+    "performance": 92
+  },
+  "metrics": {
+    "lcp": {
+      "value": 3416,
+      "displayValue": "3.4 s",
+      "unit": "ms"
+    },
+    "cls": {
+      "value": 0,
+      "displayValue": "0",
+      "unit": ""
+    },
+    "fcp": {
+      "value": 1061,
+      "displayValue": "1.1 s",
+      "unit": "ms"
+    },
+    "tbt": {
+      "value": 43,
+      "displayValue": "40 ms",
+      "unit": "ms"
+    },
+    "si": {
+      "value": 1061,
+      "displayValue": "1.1 s",
+      "unit": "ms"
+    },
+    "tti": {
+      "value": 3416,
+      "displayValue": "3.4 s",
+      "unit": "ms"
+    }
+  },
+  "targets": {
+    "performance": "≥ 95",
+    "lcp": "< 1 200 ms",
+    "cls": "< 0.05",
+    "fcp": "< 1 500 ms",
+    "tbt": "< 200 ms"
+  },
+  "_context": {
+    "sprint": "Sprint 1 — baseline pre dark-hero",
+    "next_step": "Sprint 2 — implementar dark hero, re-ejecutar y comparar contra estos valores"
+  }
+}
