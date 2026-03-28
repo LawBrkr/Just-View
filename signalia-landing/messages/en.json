@@ -1,4 +1,20 @@
 {
+  "business": {
+    "name": "Signalia",
+    "description": "Tech consulting — Digital visibility + AI automation for local businesses in Mexico City",
+    "url": "https://signalia.com.mx",
+    "email": "hola@signalia.com.mx",
+    "city": "Mexico City",
+    "neighborhoods": [
+      "Polanco",
+      "Condesa",
+      "Roma",
+      "Coyoacán",
+      "Del Valle",
+      "Santa Fe"
+    ],
+    "priceRange": "$$"
+  },
   "nav": {
     "skipToContent": "Skip to content",
     "links": {

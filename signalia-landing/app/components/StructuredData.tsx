@@ -1,25 +1,35 @@
-export default function StructuredData() {
+interface StructuredDataProps {
+  dict: {
+    business: {
+      name: string;
+      description: string;
+      url: string;
+      email: string;
+      city: string;
+      neighborhoods: string[];
+      priceRange: string;
+    };
+  };
+}
+
+export default function StructuredData({ dict }: StructuredDataProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Signalia",
-    description: "Consultoría tech — Visibilidad digital + automatización IA para PyMEs en CDMX",
-    url: "https://signalia.com.mx",
-    email: "hola@signalia.com.mx",
+    name: dict.business.name,
+    description: dict.business.description,
+    url: dict.business.url,
+    email: dict.business.email,
     areaServed: {
       "@type": "City",
-      name: "Ciudad de México",
+      name: dict.business.city,
     },
-    serviceArea: [
-      { "@type": "Place", name: "Polanco" },
-      { "@type": "Place", name: "Condesa" },
-      { "@type": "Place", name: "Roma" },
-      { "@type": "Place", name: "Coyoacán" },
-      { "@type": "Place", name: "Del Valle" },
-      { "@type": "Place", name: "Santa Fe" },
-    ],
+    serviceArea: dict.business.neighborhoods.map((n) => ({
+      "@type": "Place",
+      name: n,
+    })),
     knowsLanguage: ["es", "en"],
-    priceRange: "$$",
+    priceRange: dict.business.priceRange,
   };
 
   return (

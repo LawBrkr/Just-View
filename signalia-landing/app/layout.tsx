@@ -20,7 +20,6 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 /* ── Local Font (woff2 files downloaded from Fontshare) ── */
-/* 
 const generalSans = localFont({
   src: [
     { path: "../public/fonts/GeneralSans-400.woff2", weight: "400", style: "normal" },
@@ -31,10 +30,6 @@ const generalSans = localFont({
   display: "swap",
   variable: "--font-display",
 });
-*/
-const generalSans = {
-  variable: "--font-display",
-};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://signalia.com.mx"),

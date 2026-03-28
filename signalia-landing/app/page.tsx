@@ -31,7 +31,7 @@ export default async function Home() {
 
   return (
     <ClientIntlProvider locale={lang} messages={dict} timeZone="America/Mexico_City">
-      <StructuredData />
+      <StructuredData dict={dict} />
 
       {/* Skip to content */}
       <a href="#main-content" className="skip-to-content">

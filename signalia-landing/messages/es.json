@@ -1,4 +1,20 @@
 {
+  "business": {
+    "name": "Signalia",
+    "description": "Consultoría tech — Visibilidad digital + automatización IA para PyMEs en CDMX",
+    "url": "https://signalia.com.mx",
+    "email": "hola@signalia.com.mx",
+    "city": "Ciudad de México",
+    "neighborhoods": [
+      "Polanco",
+      "Condesa",
+      "Roma",
+      "Coyoacán",
+      "Del Valle",
+      "Santa Fe"
+    ],
+    "priceRange": "$$"
+  },
   "nav": {
     "skipToContent": "Saltar al contenido",
     "links": {
