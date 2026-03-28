@@ -1,0 +1,62 @@
+[
+  {
+    "id": "t-001",
+    "name": "Lucía Ramírez",
+    "role": "Restaurante de autor",
+    "zone": "Condesa",
+    "rating": 5,
+    "text": "En 6 semanas pasé de 12 a 47 reseñas en Google. Ahora me encuentran sin pagar ads.",
+    "service": "signal",
+    "language": "es"
+  },
+  {
+    "id": "t-002",
+    "name": "Carlos Mendoza",
+    "role": "Consultorio dental",
+    "zone": "Polanco",
+    "rating": 5,
+    "text": "Mi ficha de Google quedó impecable. Las llamadas de nuevos pacientes subieron un 30%.",
+    "service": "signal",
+    "language": "es"
+  },
+  {
+    "id": "t-003",
+    "name": "Sofía Guerrero",
+    "role": "Estudio de yoga",
+    "zone": "Roma",
+    "rating": 5,
+    "text": "El asistente responde reservas a las 2am. Perdía clientes por no contestar a tiempo.",
+    "service": "alia",
+    "language": "es"
+  },
+  {
+    "id": "t-004",
+    "name": "James T.",
+    "role": "Expat craft brewery owner",
+    "zone": "Cuauhtémoc",
+    "rating": 5,
+    "text": "Alia handles customer questions in both English and Spanish. Saved us 10 hrs a week.",
+    "service": "alia",
+    "language": "en"
+  },
+  {
+    "id": "t-005",
+    "name": "Rodrigo Vega",
+    "role": "Agencia de viajes boutique",
+    "zone": "Del Valle",
+    "rating": 5,
+    "text": "Signal me puso en el top 3 local y Alia califica leads 24/7. Combo que vale la pena.",
+    "service": "combo",
+    "language": "es"
+  },
+  {
+    "id": "t-006",
+    "name": "Mariana Fuentes",
+    "role": "Tienda de ropa independiente",
+    "zone": "Coyoacán",
+    "rating": 5,
+    "text": "Con Signal aparezco en búsquedas del barrio. Con Alia atiendo WhatsApp sola. Ganancia doble.",
+    "service": "combo",
+    "language": "es"
+  }
+]
