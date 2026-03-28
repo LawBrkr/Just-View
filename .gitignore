@@ -1,0 +1,4 @@
+signalia-landing/node_modules/
+signalia-landing/.next/
+signalia-landing/.vercel/
+*.local

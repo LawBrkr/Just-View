@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Ejecutivo — Consultoría IA + Google Business Profile</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --g: #1D9E75;
+            --gl: #E1F5EE;
+            --gd: #0F6E56;
+            --p: #7F77DD;
+            --pl: #EEEDFE;
+            --pd: #3C3489;
+            --b: #378ADD;
+            --bl: #E6F1FB;
+            --bd: #185FA5;
+            --a: #BA7517;
+            --al: #FAEEDA;
+            --ad: #854F0B;
+            --r: #E24B4A;
+            --rl: #FCEBEB;
+            --dark: #1a1a18;
+            --text: #3d3d3a;
+            --muted: #73726c;
+            --border: #D3D1C7;
+            --surface: #F5F4F0;
+            --card: #FFFFFF;
+            --font: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--surface);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(245, 244, 240, .85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 20px;
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+        }
+
+        .nav a {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--muted);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+            transition: all .2s;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            background: var(--dark);
+            color: #fff;
+        }
+
+        .page {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 32px 20px 60px;
+        }
+
+        /* HEADER */
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -.02em;
+            margin-bottom: 6px;
+        }
+
+        .header .sub {
+            font-size: 14px;
+            color: var(--muted);
+            max-width: 620px;
+        }
+
+        .tag-row {
+            display: flex;
+            gap: 6px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+
+        /* BUDGET TABLE */
+        .budget-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .budget-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .budget-card h3 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .budget-card h3 .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .budget-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px dashed rgba(0, 0, 0, .06);
+            font-size: 13px;
+        }
+
+        .budget-line:last-child {
+            border-bottom: none;
+        }
+
+        .budget-line .item {
+            color: var(--muted);
+        }
+
+        .budget-line .cost {
+            font-family: var(--mono);
+            font-weight: 500;
+            font-size: 13px;
+            color: var(--dark);
+        }
+
+        .budget-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0 0;
+            margin-top: 6px;
+            border-top: 2px solid var(--dark);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* TOOLS GRID */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .tool {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .tool-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .tool-cat {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .tool-desc {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .tool-price {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--g);
+            margin-top: 4px;
+        }
+
+        /* FLOWCHART */
+        .flow-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            overflow-x: auto;
+        }
+
+        .flow-container svg {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* GANTT */
+        .gantt-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .gantt-header {
+            display: grid;
+            grid-template-columns: 200px repeat(12, 1fr);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--card);
+            z-index: 2;
+        }
+
+        .gantt-header>div {
+            padding: 12px 6px;
+            text-align: center;
+            border-left: 1px solid rgba(0, 0, 0, .04);
+        }
+
+        .gantt-header>div:first-child {
+            text-align: left;
+            padding-left: 16px;
+            border-left: none;
+        }
+
+        .gantt-row {
+            display: grid;
+            grid-template-columns: 200px repeat(12, 1fr);
+            border-bottom: 1px solid rgba(0, 0, 0, .04);
+            min-height: 40px;
+            align-items: center;
+        }
+
+        .gantt-row:hover {
+            background: rgba(0, 0, 0, .015);
+        }
+
+        .gantt-task {
+            font-size: 12px;
+            padding: 8px 16px;
+            color: var(--dark);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .gantt-cell {
+            position: relative;
+            height: 100%;
+            border-left: 1px solid rgba(0, 0, 0, .04);
+        }
+
+        .gantt-bar {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 22px;
+            border-radius: 4px;
+            opacity: .9;
+        }
+
+        .gantt-milestone {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            rotate: 45deg;
+        }
+
+        .gantt-legend {
+            display: flex;
+            gap: 16px;
+            padding: 14px 16px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .gantt-legend span {
+            font-size: 11px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .gantt-legend .swatch {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .gantt-section {
+            grid-column: 1 / -1;
+            background: var(--surface);
+            padding: 8px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--muted);
+        }
+
+        /* MILESTONES */
+        .milestone-track {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .milestone-track::before {
+            content: '';
+            position: absolute;
+            left: 13px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(var(--g), var(--p));
+            border-radius: 1px;
+        }
+
+        .ms {
+            padding: 14px 0;
+            position: relative;
+        }
+
+        .ms::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 18px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2.5px solid;
+            background: var(--card);
+            z-index: 1;
+        }
+
+        .ms.green::before {
+            border-color: var(--g);
+        }
+
+        .ms.purple::before {
+            border-color: var(--p);
+        }
+
+        .ms.blue::before {
+            border-color: var(--b);
+        }
+
+        .ms-time {
+            font-size: 11px;
+            font-weight: 600;
+            font-family: var(--mono);
+            color: var(--muted);
+        }
+
+        .ms-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 2px 0;
+        }
+
+        .ms-desc {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .ms-metric {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-top: 4px;
+        }
+
+        /* STEPS */
+        .step-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .step {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            display: grid;
+            grid-template-columns: 44px 1fr;
+            gap: 14px;
+        }
+
+        .step-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .step p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .step .action-list {
+            margin-top: 8px;
+        }
+
+        .step .action {
+            font-size: 12px;
+            color: var(--text);
+            padding: 4px 0;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .step .action::before {
+            content: '→';
+            color: var(--g);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .step .action.purple::before {
+            color: var(--p);
+        }
+
+        .step .duration {
+            font-size: 11px;
+            font-family: var(--mono);
+            font-weight: 500;
+            color: var(--muted);
+            background: var(--surface);
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+
+        /* SUMMARY BOX */
+        .summary-box {
+            background: linear-gradient(135deg, var(--gl), var(--pl));
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .summary-box h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .summary-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .sm {
+            background: rgba(255, 255, 255, .7);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .sm-val {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .sm-lbl {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        @media (max-width: 640px) {
+            .budget-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gantt-wrap {
+                overflow-x: auto;
+            }
+
+            .gantt-header,
+            .gantt-row {
+                min-width: 800px;
+            }
+
+            .summary-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                grid-template-columns: 36px 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="#resumen" class="active">Resumen</a>
+        <a href="#presupuesto">Presupuesto</a>
+        <a href="#herramientas">Herramientas</a>
+        <a href="#flujo">Diagrama de Flujo</a>
+        <a href="#gantt">Diagrama Gantt</a>
+        <a href="#pasos">Paso a Paso</a>
+        <a href="#hitos">Hitos</a>
+    </nav>
+
+    <div class="page">
+
+        <!-- HEADER -->
+        <div class="header" id="resumen">
+            <h1>Plan Ejecutivo — 90 Días</h1>
+            <p class="sub">Lanzamiento simultáneo de Consultoría IA para PyMEs (#1) y Agencia Google Business Profile (★
+                Extra) en CDMX — presupuesto total: $8,700 MXN</p>
+            <div class="tag-row">
+                <span class="tag" style="background:var(--gl);color:var(--gd)">#1 Consultoría IA PyMEs</span>
+                <span class="tag" style="background:var(--pl);color:var(--pd)">★ Google Business Profile</span>
+                <span class="tag" style="background:var(--al);color:var(--ad)">Meta: $35k–$50k MXN/mes</span>
+            </div>
+        </div>
+
+        <!-- PRESUPUESTO -->
+        <div class="section" id="presupuesto">
+            <div class="section-label">inversión detallada</div>
+            <div class="section-title">Presupuesto Total: $8,700 MXN</div>
+            <div class="budget-grid">
+                <div class="budget-card">
+                    <h3><span class="dot" style="background:var(--g)"></span> Plan #1 — Consultoría IA · $4,200</h3>
+                    <div class="budget-line"><span class="item">Dominio consultoriaIA.mx (Namecheap)</span><span
+                            class="cost">$350</span></div>
+                    <div class="budget-line"><span class="item">Hosting Vercel Pro (1 mes)</span><span
+                            class="cost">$0</span></div>
+                    <div class="budget-line"><span class="item">Landing page profesional</span><span class="cost">$0
+                            (tú)</span></div>
+                    <div class="budget-line"><span class="item">Certificación Scrum.org PSM I</span><span
+                            class="cost">$2,800</span></div>
+                    <div class="budget-line"><span class="item">Tarjetas de presentación (Vistaprint)</span><span
+                            class="cost">$250</span></div>
+                    <div class="budget-line"><span class="item">LinkedIn Premium (1 mes)</span><span
+                            class="cost">$400</span></div>
+                    <div class="budget-line"><span class="item">Transporte / café para reuniones</span><span
+                            class="cost">$400</span></div>
+                    <div class="budget-total"><span>Total Plan #1</span><span class="cost">$4,200</span></div>
+                </div>
+                <div class="budget-card">
+                    <h3><span class="dot" style="background:var(--p)"></span> Plan ★ — Google Business · $4,500</h3>
+                    <div class="budget-line"><span class="item">BrightLocal o GMB Everywhere (reportes)</span><span
+                            class="cost">$600</span></div>
+                    <div class="budget-line"><span class="item">Dominio + Landing de servicios</span><span
+                            class="cost">$400</span></div>
+                    <div class="budget-line"><span class="item">Canva Pro (3 meses)</span><span class="cost">$250</span>
+                    </div>
+                    <div class="budget-line"><span class="item">Google Ads localizado (primeros 3 clientes)</span><span
+                            class="cost">$2,000</span></div>
+                    <div class="budget-line"><span class="item">Transporte visitas de cierre</span><span
+                            class="cost">$1,250</span></div>
+                    <div class="budget-total"><span>Total Plan ★</span><span class="cost">$4,500</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HERRAMIENTAS -->
+        <div class="section" id="herramientas">
+            <div class="section-label">stack tecnológico</div>
+            <div class="section-title">Herramientas y Plataformas</div>
+            <div class="tools-grid">
+                <div class="tool">
+                    <div class="tool-cat">Prospección</div>
+                    <div class="tool-name">LinkedIn + Sales Navigator</div>
+                    <div class="tool-desc">Buscar dueños de PyMEs en CDMX. Filtrar por industria, tamaño y ubicación.
+                    </div>
+                    <div class="tool-price">$400/mes (Premium)</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">Prospección</div>
+                    <div class="tool-name">Google Maps</div>
+                    <div class="tool-desc">Identificar negocios locales con perfiles GBP incompletos en Polanco,
+                        Condesa, Roma, Coyoacán, Del Valle y Santa Fe.</div>
+                    <div class="tool-price">Gratis</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">Landing Pages</div>
+                    <div class="tool-name">Vercel + Next.js</div>
+                    <div class="tool-desc">Desplegar dos landing pages: una para consultoría IA, otra para gestión GBP.
+                    </div>
+                    <div class="tool-price">Gratis (Hobby plan)</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">CRM</div>
+                    <div class="tool-name">HubSpot CRM (Free)</div>
+                    <div class="tool-desc">Pipeline de ventas, seguimiento de leads, automatización de correos de
+                        seguimiento.</div>
+                    <div class="tool-price">Gratis</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">Automatización IA</div>
+                    <div class="tool-name">Make.com (Integromat)</div>
+                    <div class="tool-desc">Crear flujos automatizados para demostrar a clientes PyME. También para tu
+                        operación interna.</div>
+                    <div class="tool-price">Gratis (plan Core)</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">Automatización IA</div>
+                    <div class="tool-name">ChatGPT / Claude API</div>
+                    <div class="tool-desc">Generar contenido para posts GBP, auditorías de IA, propuestas
+                        personalizadas.</div>
+                    <div class="tool-price">~$400/mes</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">Diseño</div>
+                    <div class="tool-name">Canva Pro</div>
+                    <div class="tool-desc">Publicaciones semanales para GBP de clientes. Presentaciones para auditorías.
+                    </div>
+                    <div class="tool-price">$85/mes</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">Reportes GBP</div>
+                    <div class="tool-name">BrightLocal</div>
+                    <div class="tool-desc">Auditorías de perfiles GBP, reportes mensuales de métricas, seguimiento de
+                        ranking local.</div>
+                    <div class="tool-price">$600 (setup)</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">Publicidad</div>
+                    <div class="tool-name">Google Ads</div>
+                    <div class="tool-desc">Campaña local segmentada: "optimización perfil Google mi negocio CDMX".</div>
+                    <div class="tool-price">$2,000 (inicial)</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">Contratos</div>
+                    <div class="tool-name">PandaDoc / Notion</div>
+                    <div class="tool-desc">Contratos digitales, propuestas interactivas, firmas electrónicas.</div>
+                    <div class="tool-price">Gratis (básico)</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">Pagos</div>
+                    <div class="tool-name">Stripe / Mercado Pago</div>
+                    <div class="tool-desc">Cobro de retainers mensuales con domiciliación automática.</div>
+                    <div class="tool-price">Comisión 3.6%</div>
+                </div>
+                <div class="tool">
+                    <div class="tool-cat">Certificación</div>
+                    <div class="tool-name">Scrum.org — PSM I</div>
+                    <div class="tool-desc">Certificación internacional que justifica cobrar tarifas premium en
+                        consultoría.</div>
+                    <div class="tool-price">$2,800 (único)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAGRAMA DE FLUJO -->
+        <div class="section" id="flujo">
+            <div class="section-label">proceso completo</div>
+            <div class="section-title">Diagrama de Flujo — Lanzamiento Dual</div>
+            <div class="flow-container">
+                <svg viewBox="0 0 860 1320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
+                    <defs>
+                        <marker id="arrowG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#1D9E75" />
+                        </marker>
+                        <marker id="arrowP" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#7F77DD" />
+                        </marker>
+                        <marker id="arrowB" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#378ADD" />
+                        </marker>
+                        <filter id="shadow">
+                            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity=".06" />
+                        </filter>
+                    </defs>
+
+                    <!-- TITLE -->
+                    <text x="430" y="30" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11"
+                        font-weight="700" fill="#73726c" letter-spacing="1.5">SEMANA 1 — FUNDAMENTOS</text>
+
+                    <!-- START NODE -->
+                    <rect x="310" y="48" width="240" height="44" rx="22" fill="#1a1a18" filter="url(#shadow)" />
+                    <text x="430" y="75" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13"
+                        font-weight="600" fill="#fff">INICIO — Día 1</text>
+
+                    <!-- SPLIT -->
+                    <line x1="430" y1="92" x2="430" y2="120" stroke="#73726c" stroke-width="1.5" />
+                    <line x1="430" y1="120" x2="220" y2="120" stroke="#1D9E75" stroke-width="1.5" />
+                    <line x1="430" y1="120" x2="640" y2="120" stroke="#7F77DD" stroke-width="1.5" />
+                    <line x1="220" y1="120" x2="220" y2="145" stroke="#1D9E75" stroke-width="1.5"
+                        marker-end="url(#arrowG)" />
+                    <line x1="640" y1="120" x2="640" y2="145" stroke="#7F77DD" stroke-width="1.5"
+                        marker-end="url(#arrowP)" />
+
+                    <!-- LEFT COLUMN: PLAN #1 -->
+                    <rect x="80" y="148" width="280" height="50" rx="10" fill="#E1F5EE" stroke="#1D9E75"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="220" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#0F6E56">1a. Comprar dominio</text>
+                    <text x="220" y="186" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Namecheap · $350 MXN</text>
+
+                    <line x1="220" y1="198" x2="220" y2="222" stroke="#1D9E75" stroke-width="1.5"
+                        marker-end="url(#arrowG)" />
+
+                    <rect x="80" y="225" width="280" height="50" rx="10" fill="#E1F5EE" stroke="#1D9E75"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="220" y="247" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#0F6E56">1b. Construir landing page</text>
+                    <text x="220" y="263" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Next.js + Vercel · 2 días</text>
+
+                    <line x1="220" y1="275" x2="220" y2="299" stroke="#1D9E75" stroke-width="1.5"
+                        marker-end="url(#arrowG)" />
+
+                    <rect x="80" y="302" width="280" height="50" rx="10" fill="#E1F5EE" stroke="#1D9E75"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="220" y="324" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#0F6E56">1c. Estudiar para PSM I</text>
+                    <text x="220" y="340" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Scrum.org · 5 días estudio</text>
+
+                    <line x1="220" y1="352" x2="220" y2="376" stroke="#1D9E75" stroke-width="1.5"
+                        marker-end="url(#arrowG)" />
+
+                    <rect x="80" y="379" width="280" height="50" rx="10" fill="#E1F5EE" stroke="#1D9E75"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="220" y="401" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#0F6E56">1d. Crear perfil LinkedIn Premium</text>
+                    <text x="220" y="417" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Optimizar headline + portafolio</text>
+
+                    <!-- RIGHT COLUMN: PLAN EXTRA -->
+                    <rect x="500" y="148" width="280" height="50" rx="10" fill="#EEEDFE" stroke="#7F77DD"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="640" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#3C3489">★a. Activar BrightLocal</text>
+                    <text x="640" y="186" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Configurar reportes · $600</text>
+
+                    <line x1="640" y1="198" x2="640" y2="222" stroke="#7F77DD" stroke-width="1.5"
+                        marker-end="url(#arrowP)" />
+
+                    <rect x="500" y="225" width="280" height="50" rx="10" fill="#EEEDFE" stroke="#7F77DD"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="640" y="247" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#3C3489">★b. Landing de servicios GBP</text>
+                    <text x="640" y="263" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Dominio + Vercel · $400</text>
+
+                    <line x1="640" y1="275" x2="640" y2="299" stroke="#7F77DD" stroke-width="1.5"
+                        marker-end="url(#arrowP)" />
+
+                    <rect x="500" y="302" width="280" height="50" rx="10" fill="#EEEDFE" stroke="#7F77DD"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="640" y="324" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#3C3489">★c. Canva Pro + templates</text>
+                    <text x="640" y="340" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Crear 10 plantillas base · $250</text>
+
+                    <line x1="640" y1="352" x2="640" y2="376" stroke="#7F77DD" stroke-width="1.5"
+                        marker-end="url(#arrowP)" />
+
+                    <rect x="500" y="379" width="280" height="50" rx="10" fill="#EEEDFE" stroke="#7F77DD"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="640" y="401" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#3C3489">★d. Lanzar Google Ads local</text>
+                    <text x="640" y="417" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">$2,000 · Keywords GBP CDMX</text>
+
+                    <!-- WEEK 2 LABEL -->
+                    <text x="430" y="468" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11"
+                        font-weight="700" fill="#73726c" letter-spacing="1.5">SEMANA 2–3 — PROSPECCIÓN Y PRIMEROS
+                        CLIENTES</text>
+
+                    <line x1="220" y1="429" x2="220" y2="490" stroke="#1D9E75" stroke-width="1.5"
+                        marker-end="url(#arrowG)" />
+                    <line x1="640" y1="429" x2="640" y2="490" stroke="#7F77DD" stroke-width="1.5"
+                        marker-end="url(#arrowP)" />
+
+                    <rect x="80" y="493" width="280" height="60" rx="10" fill="#E1F5EE" stroke="#1D9E75"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="220" y="517" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#0F6E56">2a. Prospectar 30 PyMEs</text>
+                    <text x="220" y="533" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">LinkedIn + Google Maps</text>
+                    <text x="220" y="546" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Polanco · Santa Fe · Del Valle</text>
+
+                    <rect x="500" y="493" width="280" height="60" rx="10" fill="#EEEDFE" stroke="#7F77DD"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="640" y="517" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#3C3489">★e. Visitar 20 negocios</text>
+                    <text x="640" y="533" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Demo 10 min con tablet</text>
+                    <text x="640" y="546" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Mostrar perfil actual vs optimizado</text>
+
+                    <line x1="220" y1="553" x2="220" y2="580" stroke="#1D9E75" stroke-width="1.5"
+                        marker-end="url(#arrowG)" />
+                    <line x1="640" y1="553" x2="640" y2="580" stroke="#7F77DD" stroke-width="1.5"
+                        marker-end="url(#arrowP)" />
+
+                    <rect x="80" y="583" width="280" height="50" rx="10" fill="#E1F5EE" stroke="#1D9E75"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="220" y="605" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#0F6E56">2b. Auditoría gratis a 10</text>
+                    <text x="220" y="621" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">PDF automatizado con IA · $3,500 cobro</text>
+
+                    <rect x="500" y="583" width="280" height="50" rx="10" fill="#EEEDFE" stroke="#7F77DD"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="640" y="605" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#3C3489">★f. Cerrar primeros 3 clientes</text>
+                    <text x="640" y="621" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Activación $2,500 + retainer $2,500/mes</text>
+
+                    <!-- MILESTONE 1 -->
+                    <line x1="220" y1="633" x2="220" y2="670" stroke="#1D9E75" stroke-width="1.5" />
+                    <line x1="640" y1="633" x2="640" y2="670" stroke="#7F77DD" stroke-width="1.5" />
+                    <line x1="220" y1="670" x2="430" y2="670" stroke="#378ADD" stroke-width="1.5" />
+                    <line x1="640" y1="670" x2="430" y2="670" stroke="#378ADD" stroke-width="1.5" />
+                    <line x1="430" y1="670" x2="430" y2="690" stroke="#378ADD" stroke-width="1.5"
+                        marker-end="url(#arrowB)" />
+
+                    <rect x="260" y="693" width="340" height="52" rx="10" fill="#378ADD" filter="url(#shadow)" />
+                    <text x="430" y="714" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13"
+                        font-weight="700" fill="#fff">🎯 HITO — Día 21</text>
+                    <text x="430" y="733" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11"
+                        fill="rgba(255,255,255,.8)">Primer ingreso: $10,000–$15,000 MXN combinados</text>
+
+                    <!-- WEEK 4-6 -->
+                    <text x="430" y="780" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11"
+                        font-weight="700" fill="#73726c" letter-spacing="1.5">SEMANA 4–6 — ESCALA Y RETENCIÓN</text>
+
+                    <line x1="430" y1="745" x2="430" y2="793" stroke="#378ADD" stroke-width="1.5" />
+                    <line x1="430" y1="793" x2="220" y2="793" stroke="#1D9E75" stroke-width="1.5" />
+                    <line x1="430" y1="793" x2="640" y2="793" stroke="#7F77DD" stroke-width="1.5" />
+                    <line x1="220" y1="793" x2="220" y2="816" stroke="#1D9E75" stroke-width="1.5"
+                        marker-end="url(#arrowG)" />
+                    <line x1="640" y1="793" x2="640" y2="816" stroke="#7F77DD" stroke-width="1.5"
+                        marker-end="url(#arrowP)" />
+
+                    <rect x="80" y="819" width="280" height="60" rx="10" fill="#E1F5EE" stroke="#1D9E75"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="220" y="843" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#0F6E56">3a. Cerrar 2 retainers IA</text>
+                    <text x="220" y="859" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">De auditorías → contratos $6k/mes c/u</text>
+                    <text x="220" y="872" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">HubSpot CRM para seguimiento</text>
+
+                    <rect x="500" y="819" width="280" height="60" rx="10" fill="#EEEDFE" stroke="#7F77DD"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="640" y="843" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#3C3489">★g. Escalar a 8 clientes GBP</text>
+                    <text x="640" y="859" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Referidos + Google Ads continuo</text>
+                    <text x="640" y="872" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Automatizar reportes con IA</text>
+
+                    <line x1="220" y1="879" x2="220" y2="906" stroke="#1D9E75" stroke-width="1.5"
+                        marker-end="url(#arrowG)" />
+                    <line x1="640" y1="879" x2="640" y2="906" stroke="#7F77DD" stroke-width="1.5"
+                        marker-end="url(#arrowP)" />
+
+                    <rect x="80" y="909" width="280" height="50" rx="10" fill="#E1F5EE" stroke="#1D9E75"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="220" y="931" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#0F6E56">3b. Portafolio de casos</text>
+                    <text x="220" y="947" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">3–4 casos de éxito documentados</text>
+
+                    <rect x="500" y="909" width="280" height="50" rx="10" fill="#EEEDFE" stroke="#7F77DD"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="640" y="931" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#3C3489">★h. Ofrecer paquete anual</text>
+                    <text x="640" y="947" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">$22,000 MXN · ingreso garantizado 12 meses</text>
+
+                    <!-- SYNERGY -->
+                    <text x="430" y="1000" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11"
+                        font-weight="700" fill="#73726c" letter-spacing="1.5">SEMANA 7–12 — SINERGIA Y META FINAL</text>
+
+                    <line x1="220" y1="959" x2="220" y2="1018" stroke="#1D9E75" stroke-width="1.5" />
+                    <line x1="640" y1="959" x2="640" y2="1018" stroke="#7F77DD" stroke-width="1.5" />
+                    <line x1="220" y1="1018" x2="430" y2="1018" stroke="#378ADD" stroke-width="1.5" />
+                    <line x1="640" y1="1018" x2="430" y2="1018" stroke="#378ADD" stroke-width="1.5" />
+                    <line x1="430" y1="1018" x2="430" y2="1040" stroke="#378ADD" stroke-width="1.5"
+                        marker-end="url(#arrowB)" />
+
+                    <rect x="190" y="1043" width="480" height="60" rx="10" fill="#E6F1FB" stroke="#378ADD"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="430" y="1067" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#185FA5">CROSS-SELL: Cliente GBP → Consultoría IA</text>
+                    <text x="430" y="1085" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">Mismo cliente que contrata GBP es candidato para automatización IA al mes
+                        siguiente</text>
+
+                    <line x1="430" y1="1103" x2="430" y2="1130" stroke="#378ADD" stroke-width="1.5"
+                        marker-end="url(#arrowB)" />
+
+                    <rect x="190" y="1133" width="480" height="60" rx="10" fill="#E1F5EE" stroke="#1D9E75"
+                        stroke-width="1.5" filter="url(#shadow)" />
+                    <text x="430" y="1157" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12"
+                        font-weight="700" fill="#0F6E56">Consolidar: 2 retainers IA + 8 clientes GBP</text>
+                    <text x="430" y="1175" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                        fill="#73726c">$12,000 + $20,000 = $32,000 MXN/mes recurrentes</text>
+
+                    <line x1="430" y1="1193" x2="430" y2="1220" stroke="#1D9E75" stroke-width="1.5" />
+
+                    <!-- FINAL -->
+                    <rect x="260" y="1223" width="340" height="52" rx="26" fill="#1a1a18" filter="url(#shadow)" />
+                    <text x="430" y="1244" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13"
+                        font-weight="700" fill="#1D9E75">✓ META — Día 90</text>
+                    <text x="430" y="1263" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11"
+                        fill="rgba(255,255,255,.7)">$35,000–$50,000 MXN mensuales recurrentes</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- GANTT -->
+        <div class="section" id="gantt">
+            <div class="section-label">línea de tiempo</div>
+            <div class="section-title">Diagrama de Gantt — 12 Semanas</div>
+            <div class="gantt-wrap">
+                <div class="gantt-header">
+                    <div>Tarea</div>
+                    <div>S1</div>
+                    <div>S2</div>
+                    <div>S3</div>
+                    <div>S4</div>
+                    <div>S5</div>
+                    <div>S6</div>
+                    <div>S7</div>
+                    <div>S8</div>
+                    <div>S9</div>
+                    <div>S10</div>
+                    <div>S11</div>
+                    <div>S12</div>
+                </div>
+
+                <!-- PLAN 1 SECTION -->
+                <div class="gantt-section" style="border-left:3px solid var(--g)">Plan #1 — Consultoría IA para PyMEs
+                </div>
+
+                <div class="gantt-row">
+                    <div class="gantt-task">Dominio + landing</div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:10%;width:80%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:50%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Certificación PSM I</div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:10%;width:80%;background:var(--g);opacity:.5"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--g);opacity:.5"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:40%;background:var(--g);opacity:.5"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">LinkedIn Premium + perfil</div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:50%;width:50%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:40%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Prospectar 30 PyMEs</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:10%;width:90%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:50%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">10 auditorías gratis</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:20%;width:80%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Cerrar 2 retainers $6k</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:30%;width:70%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:60%;background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Portafolio de casos</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:10%;width:90%;background:var(--g);opacity:.6"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--g);opacity:.6"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:50%;background:var(--g);opacity:.6"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Cross-sell a GBP clients</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--b)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--b)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--b)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--b)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--b)"></div>
+                    </div>
+                </div>
+
+                <!-- PLAN EXTRA SECTION -->
+                <div class="gantt-section" style="border-left:3px solid var(--p)">Plan ★ — Agencia Google Business
+                    Profile</div>
+
+                <div class="gantt-row">
+                    <div class="gantt-task">BrightLocal + setup</div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:10%;width:90%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Landing + Canva templates</div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:10%;width:90%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:60%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Google Ads campaña</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:10%;width:90%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:60%;background:var(--p);opacity:.5"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Visitas puerta a puerta</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:30%;width:70%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:60%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Cerrar 3 clientes iniciales</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:20%;width:80%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:50%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Escalar a 5 clientes</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:10%;width:90%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Escalar a 8 clientes</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:60%;background:var(--p)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">Ofrecer paquete anual</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p);opacity:.6"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p);opacity:.6"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p);opacity:.6"></div>
+                    </div>
+                    <div class="gantt-cell">
+                        <div class="gantt-bar" style="left:0;width:100%;background:var(--p);opacity:.6"></div>
+                    </div>
+                </div>
+
+                <!-- MILESTONES SECTION -->
+                <div class="gantt-section" style="border-left:3px solid var(--b)">Hitos Clave</div>
+
+                <div class="gantt-row">
+                    <div class="gantt-task">💰 Primer ingreso</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-milestone" style="background:var(--a)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">🎯 $20k/mes alcanzado</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-milestone" style="background:var(--g)"></div>
+                    </div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                </div>
+                <div class="gantt-row">
+                    <div class="gantt-task">🚀 $35k–$50k/mes</div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell"></div>
+                    <div class="gantt-cell">
+                        <div class="gantt-milestone" style="background:var(--r)"></div>
+                    </div>
+                </div>
+
+                <div class="gantt-legend">
+                    <span><span class="swatch" style="background:var(--g)"></span> Consultoría IA</span>
+                    <span><span class="swatch" style="background:var(--p)"></span> Google Business</span>
+                    <span><span class="swatch" style="background:var(--b)"></span> Cross-sell / sinergia</span>
+                    <span><span class="swatch"
+                            style="background:var(--a);border-radius:2px;rotate:45deg;width:10px;height:10px"></span>
+                        Hito clave</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PASO A PASO -->
+        <div class="section" id="pasos">
+            <div class="section-label">ejecución detallada</div>
+            <div class="section-title">Paso a Paso — Las 12 Semanas</div>
+
+            <div class="step-grid">
+
+                <div class="step">
+                    <div class="step-num" style="background:var(--gl);color:var(--gd)">1</div>
+                    <div>
+                        <h4>Día 1–2: Infraestructura digital (ambos planes)</h4>
+                        <p>Montar la base operativa de los dos negocios en paralelo.</p>
+                        <div class="action-list">
+                            <div class="action">Comprar dominio en <strong>Namecheap</strong> para consultoría IA ($350)
+                            </div>
+                            <div class="action">Comprar dominio para agencia GBP en <strong>Namecheap</strong> ($200
+                                incluido en $400)</div>
+                            <div class="action">Crear cuenta en <strong>Vercel</strong> y desplegar dos landing pages
+                                con Next.js</div>
+                            <div class="action">Activar <strong>Canva Pro</strong> ($250) y crear 10 plantillas de
+                                publicaciones GBP</div>
+                            <div class="action">Configurar <strong>HubSpot CRM</strong> gratuito con dos pipelines: uno
+                                IA, uno GBP</div>
+                            <div class="action">Crear cuenta en <strong>PandaDoc</strong> con templates de contrato para
+                                ambos servicios</div>
+                            <div class="action purple">Configurar <strong>BrightLocal</strong> ($600) para auditorías y
+                                reportes GBP</div>
+                        </div>
+                        <span class="duration">⏱ 2 días · $1,800 MXN</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num" style="background:var(--gl);color:var(--gd)">2</div>
+                    <div>
+                        <h4>Día 3–7: Preparación personal y credenciales</h4>
+                        <p>Construir la autoridad necesaria para cobrar tarifas premium.</p>
+                        <div class="action-list">
+                            <div class="action">Comenzar estudio intensivo para <strong>PSM I de Scrum.org</strong>
+                                ($2,800)</div>
+                            <div class="action">Activar <strong>LinkedIn Premium</strong> ($400) y optimizar perfil:
+                                headline con keywords IA + Scrum</div>
+                            <div class="action">Publicar primer artículo en LinkedIn sobre automatización IA para PyMEs
+                            </div>
+                            <div class="action">Imprimir tarjetas de presentación en <strong>Vistaprint</strong> ($250)
+                            </div>
+                            <div class="action">Crear perfil en <strong>Google Business</strong> propio como ejemplo de
+                                caso real</div>
+                            <div class="action purple">Preparar presentación de demo GBP en tablet: "perfil actual vs
+                                optimizado"</div>
+                        </div>
+                        <span class="duration">⏱ 5 días · $3,450 MXN</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num" style="background:var(--pl);color:var(--pd)">3</div>
+                    <div>
+                        <h4>Día 8–14: Lanzar Google Ads + prospección activa</h4>
+                        <p>Activar los dos canales de adquisición de clientes simultáneamente.</p>
+                        <div class="action-list">
+                            <div class="action purple">Lanzar campaña en <strong>Google Ads</strong> ($2,000): keywords
+                                "optimización Google mi negocio CDMX", "perfil Google empresa"</div>
+                            <div class="action purple">Visitar 20 negocios en Polanco y Condesa con tablet: demo de 10
+                                minutos mostrando su perfil GBP actual</div>
+                            <div class="action">Enviar 30 mensajes personalizados en LinkedIn a dueños de PyMEs en CDMX
+                            </div>
+                            <div class="action">Crear template de auditoría IA en PDF con
+                                <strong>Claude/ChatGPT</strong> + <strong>Make.com</strong></div>
+                            <div class="action">Agendar 5–8 llamadas de descubrimiento para consultoría IA vía
+                                <strong>Calendly</strong> (gratis)</div>
+                            <div class="action purple">Meta: cerrar 1–2 activaciones GBP ($2,500 c/u) esta semana</div>
+                        </div>
+                        <span class="duration">⏱ 7 días · $2,000 MXN (Google Ads)</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num" style="background:var(--bl);color:var(--bd)">4</div>
+                    <div>
+                        <h4>Día 14–21: Primeros ingresos y certificación</h4>
+                        <p>El momento donde los dos flujos empiezan a generar dinero real.</p>
+                        <div class="action-list">
+                            <div class="action">Presentar examen <strong>PSM I</strong> (ya estudiado 10+ días)</div>
+                            <div class="action">Entregar primeras auditorías IA gratuitas → ofrecer retainer $6,000/mes
+                            </div>
+                            <div class="action">Cobrar primeras auditorías profundas a $3,500 MXN con
+                                <strong>Stripe</strong> o <strong>Mercado Pago</strong></div>
+                            <div class="action purple">Completar activación de primeros 3 clientes GBP: fotos,
+                                descripción, categorías, respuestas a reseñas</div>
+                            <div class="action purple">Iniciar gestión mensual GBP: 4 posts/semana con Canva + ChatGPT
+                                (30 min por cliente)</div>
+                            <div class="action">Solicitar referidos a primeros clientes satisfechos en ambos servicios
+                            </div>
+                        </div>
+                        <span class="duration">🎯 HITO: $10,000–$15,000 primer ingreso combinado</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num" style="background:var(--gl);color:var(--gd)">5</div>
+                    <div>
+                        <h4>Semana 4–6: Conversión y escala</h4>
+                        <p>Convertir auditorías en retainers y escalar la cartera GBP.</p>
+                        <div class="action-list">
+                            <div class="action">De las 10 auditorías IA → cerrar 2 retainers mensuales a $6,000/mes c/u
+                                en <strong>HubSpot</strong></div>
+                            <div class="action">Crear flujos automatizados reales con <strong>Make.com</strong> +
+                                <strong>Claude API</strong> para clientes de retainer</div>
+                            <div class="action purple">Escalar cartera GBP de 3 a 5 clientes vía referidos + Google Ads
+                            </div>
+                            <div class="action purple">Generar primer reporte mensual con <strong>BrightLocal</strong> →
+                                enviar a clientes GBP</div>
+                            <div class="action">Documentar resultados de clientes para portafolio de casos de estudio
+                            </div>
+                            <div class="action">Publicar 2 artículos/semana en LinkedIn con resultados reales (sin
+                                nombres)</div>
+                        </div>
+                        <span class="duration">🎯 HITO: $20,000/mes alcanzado (2 retainers IA + 5 GBP)</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num" style="background:var(--pl);color:var(--pd)">6</div>
+                    <div>
+                        <h4>Semana 7–9: Sinergia y cross-sell</h4>
+                        <p>Aquí los dos negocios empiezan a alimentarse mutuamente.</p>
+                        <div class="action-list">
+                            <div class="action purple">Escalar cartera GBP de 5 a 8 clientes → $20,000 recurrentes solo
+                                en GBP</div>
+                            <div class="action">Ofrecer consultoría IA a clientes GBP existentes: "automatiza tus
+                                respuestas, inventario, atención"</div>
+                            <div class="action">Crear <strong>paquete combo</strong>: GBP + automatización IA a
+                                $7,500/mes (descuento por bundle)</div>
+                            <div class="action purple">Ofrecer paquete anual GBP a los mejores clientes: $22,000 MXN
+                                (lock-in 12 meses)</div>
+                            <div class="action">Automatizar tu propia operación: reportes GBP con IA, propuestas
+                                auto-generadas, seguimiento CRM</div>
+                            <div class="action">Contactar negocios internacionales en Polanco con propuesta en inglés
+                                (tarifas USD)</div>
+                        </div>
+                        <span class="duration">⏱ 3 semanas · Ingreso proyectado: $28,000–$35,000/mes</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num" style="background:var(--dark);color:#fff">7</div>
+                    <div>
+                        <h4>Semana 10–12: Consolidación y meta final</h4>
+                        <p>Estabilizar la operación y preparar el terreno para el siguiente nivel.</p>
+                        <div class="action-list">
+                            <div class="action">Consolidar portafolio con 3–4 casos de éxito documentados con métricas
+                                reales</div>
+                            <div class="action">Contratar asistente virtual en <strong>Workana</strong> ($3,000/mes)
+                                para tareas operativas GBP</div>
+                            <div class="action">Preparar propuesta para empresas medianas (Plan #4 del ranking) con
+                                portafolio comprobado</div>
+                            <div class="action purple">Total clientes GBP: 8+ activos con retainer mensual</div>
+                            <div class="action">Total retainers IA: 2–3 activos a $6,000–$8,000/mes cada uno</div>
+                            <div class="action">Lanzar Paws Club (#2) en paralelo con 5+ reseñas Google ya obtenidas
+                            </div>
+                        </div>
+                        <span class="duration">🚀 META FINAL: $35,000–$50,000 MXN mensuales recurrentes</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- HITOS -->
+        <div class="section" id="hitos">
+            <div class="section-label">checkpoints de progreso</div>
+            <div class="section-title">Hitos Clave del Plan</div>
+
+            <div class="milestone-track">
+                <div class="ms green">
+                    <div class="ms-time">DÍA 7</div>
+                    <div class="ms-title">Infraestructura completa</div>
+                    <div class="ms-desc">2 landing pages live, CRM configurado, BrightLocal activo, Canva Pro con
+                        templates, Google Ads lanzado</div>
+                    <span class="ms-metric" style="background:var(--gl);color:var(--gd)">$4,500 invertidos</span>
+                </div>
+                <div class="ms green">
+                    <div class="ms-time">DÍA 14</div>
+                    <div class="ms-title">Primera activación GBP cobrada</div>
+                    <div class="ms-desc">Al menos 1 cliente GBP con activación pagada ($2,500) + 5 leads de consultoría
+                        IA en pipeline</div>
+                    <span class="ms-metric" style="background:var(--pl);color:var(--pd)">+$2,500 ingreso</span>
+                </div>
+                <div class="ms blue">
+                    <div class="ms-time">DÍA 21</div>
+                    <div class="ms-title">Primer ingreso significativo combinado</div>
+                    <div class="ms-desc">3 clientes GBP activos + primera auditoría IA cobrada. Certificación PSM I
+                        obtenida.</div>
+                    <span class="ms-metric" style="background:var(--bl);color:var(--bd)">$10,000–$15,000 total</span>
+                </div>
+                <div class="ms green">
+                    <div class="ms-time">DÍA 42</div>
+                    <div class="ms-title">Meta $20k/mes alcanzada</div>
+                    <div class="ms-desc">2 retainers IA ($12k) + 5 clientes GBP ($12.5k) = $24,500 MXN mensuales
+                        recurrentes</div>
+                    <span class="ms-metric" style="background:var(--gl);color:var(--gd)">$24,500/mes recurrente</span>
+                </div>
+                <div class="ms purple">
+                    <div class="ms-time">DÍA 63</div>
+                    <div class="ms-title">Cross-sell activo + 8 clientes GBP</div>
+                    <div class="ms-desc">Clientes GBP comprando consultoría IA. Paquetes anuales ofrecidos. Pipeline B2B
+                        iniciado.</div>
+                    <span class="ms-metric" style="background:var(--pl);color:var(--pd)">$35,000/mes proyectado</span>
+                </div>
+                <div class="ms purple">
+                    <div class="ms-time">DÍA 90</div>
+                    <div class="ms-title">Meta final: $35k–$50k/mes</div>
+                    <div class="ms-desc">Operación estable con asistente virtual. Portafolio de casos. Preparado para
+                        escalar al Plan #4 (B2B).</div>
+                    <span class="ms-metric" style="background:var(--dark);color:#fff">$35,000–$50,000/mes</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary-box">
+            <h3>Resumen Ejecutivo — Los Números</h3>
+            <p>Con una inversión total de $8,700 MXN (de los $20,000 disponibles), este plan ejecuta dos negocios
+                complementarios en paralelo. El primer ingreso llega entre el día 7 y 14. La meta de $20,000 mensuales
+                se alcanza alrededor de la semana 6, y para el día 90 la proyección combinada es de $35,000–$50,000 MXN
+                mensuales recurrentes — con $11,300 MXN de reserva sin tocar.</p>
+            <div class="summary-metrics">
+                <div class="sm">
+                    <div class="sm-val">$8,700</div>
+                    <div class="sm-lbl">Inversión total de $20k</div>
+                </div>
+                <div class="sm">
+                    <div class="sm-val">7–14 días</div>
+                    <div class="sm-lbl">Al primer ingreso real</div>
+                </div>
+                <div class="sm">
+                    <div class="sm-val">$35k–$50k</div>
+                    <div class="sm-lbl">MXN/mes al día 90</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking Modelos de Negocio — Paws Club 2026</title>
+    <style>
+        :root {
+            --green: #1D9E75;
+            --green-l: #E1F5EE;
+            --green-d: #0F6E56;
+            --blue: #378ADD;
+            --blue-l: #E6F1FB;
+            --blue-d: #185FA5;
+            --amber: #BA7517;
+            --amber-l: #FAEEDA;
+            --amber-d: #854F0B;
+            --purple: #7F77DD;
+            --purple-l: #EEEDFE;
+            --purple-d: #3C3489;
+            --gray: #888780;
+            --gray-l: #F1EFE8;
+            --gray-d: #444441;
+            --red: #E24B4A;
+            --red-l: #FCEBEB;
+            --dark: #2C2C2A;
+            --text: #3d3d3a;
+            --muted: #73726c;
+            --border: #D3D1C7;
+            --surface: #F7F6F2;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: var(--surface);
+            color: var(--text);
+            padding: 24px 16px;
+        }
+
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .sl {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--muted);
+            margin: 20px 0 8px;
+        }
+
+        /* AXIS ROW */
+        .axis-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .axis {
+            background: var(--white);
+            border: .5px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .axis-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+
+        .axis-desc {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--white);
+            border: .5px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .card.top1 {
+            border: 2px solid var(--green);
+        }
+
+        .card.extra {
+            border: 2px solid var(--purple);
+        }
+
+        .ch {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px 12px;
+            border-bottom: .5px solid var(--border);
+        }
+
+        .rk {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .ct {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .cn {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+
+        .cs {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .sc-wrap {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .sc {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .sc-lbl {
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        .cb {
+            padding: 14px 16px;
+        }
+
+        /* METRICS TRIO */
+        .trio {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .m {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 10px 12px;
+            text-align: center;
+        }
+
+        .ml {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .mv {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .mn {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* BARS */
+        .bars {
+            display: grid;
+            grid-template-columns: 90px 1fr 38px;
+            gap: 5px 10px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .bl {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .bt {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .bf {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        .bv {
+            font-size: 11px;
+            color: var(--muted);
+            text-align: right;
+        }
+
+        /* WHY */
+        .why {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.7;
+            border-top: .5px solid var(--border);
+            padding-top: 10px;
+        }
+
+        .why strong {
+            color: var(--dark);
+        }
+
+        /* BADGES */
+        .badges {
+            margin-top: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 9px;
+            border-radius: 20px;
+            margin: 2px 4px 2px 0;
+        }
+
+        /* EXTRA SPECIFIC */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .svc {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 10px 12px;
+        }
+
+        .svc-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .svc-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--purple);
+            margin-bottom: 4px;
+        }
+
+        .svc-desc {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .info-box {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 11px 13px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .info-box strong {
+            color: var(--dark);
+        }
+
+        .inv-list {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 2;
+        }
+
+        /* SUMMARY */
+        .summary {
+            background: var(--green-l);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--green-d);
+            line-height: 1.7;
+        }
+
+        .summary strong {
+            color: var(--green-d);
+            font-weight: 600;
+        }
+
+        /* CHART */
+        .chart-wrap {
+            margin-bottom: 20px;
+        }
+
+        canvas {
+            width: 100% !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <h1>Ranking — Modelos de Negocio</h1>
+        <p class="subtitle">Ordenados por: velocidad de primer ingreso · rentabilidad real · ROI por peso invertido ·
+            CDMX 2026</p>
+
+        <div class="sl">metodología — tres ejes con peso igual</div>
+        <div class="axis-row">
+            <div class="axis">
+                <div class="axis-name">Velocidad</div>
+                <div class="axis-desc">Días al primer peso cobrado</div>
+            </div>
+            <div class="axis">
+                <div class="axis-name">Rentabilidad</div>
+                <div class="axis-desc">Margen neto real y ticket promedio</div>
+            </div>
+            <div class="axis">
+                <div class="axis-name">Eficiencia</div>
+                <div class="axis-desc">Ingresos generados por cada peso invertido</div>
+            </div>
+        </div>
+
+        <div class="chart-wrap">
+            <canvas id="mainChart" height="280"></canvas>
+        </div>
+
+        <div class="sl">ranking detallado — de mayor a menor costo-beneficio</div>
+
+        <!-- #1 -->
+        <div class="card top1">
+            <div class="ch">
+                <div class="rk" style="background:var(--green-l);color:var(--green-d)">1</div>
+                <div class="ct">
+                    <div class="cn">Consultoría de Automatización IA para PyMEs</div>
+                    <div class="cs">Habilidades: IA + Scrum Master · Zona: Polanco, Santa Fe, Del Valle</div>
+                </div>
+                <div class="sc-wrap">
+                    <div class="sc" style="color:var(--green)">9.2</div>
+                    <div class="sc-lbl">/ 10</div>
+                </div>
+            </div>
+            <div class="cb">
+                <div class="trio">
+                    <div class="m">
+                        <div class="ml">Inversión</div>
+                        <div class="mv">$4,200</div>
+                        <div class="mn">MXN total</div>
+                    </div>
+                    <div class="m">
+                        <div class="ml">1er ingreso</div>
+                        <div class="mv">7–14 días</div>
+                        <div class="mn">Auditoría a $3,500</div>
+                    </div>
+                    <div class="m">
+                        <div class="ml">Meta 20k</div>
+                        <div class="mv">2 clientes</div>
+                        <div class="mn">Retainer $6k/mes c/u</div>
+                    </div>
+                </div>
+                <div class="bars">
+                    <div class="bl">Velocidad</div>
+                    <div class="bt">
+                        <div class="bf" style="width:80%;background:var(--green)"></div>
+                    </div>
+                    <div class="bv">8/10</div>
+                    <div class="bl">Rentabilidad</div>
+                    <div class="bt">
+                        <div class="bf" style="width:100%;background:var(--green)"></div>
+                    </div>
+                    <div class="bv">10/10</div>
+                    <div class="bl">ROI inversión</div>
+                    <div class="bt">
+                        <div class="bf" style="width:100%;background:var(--green)"></div>
+                    </div>
+                    <div class="bv">10/10</div>
+                </div>
+                <div class="why">Gana por matemática pura: $4,200 MXN de inversión para llegar a $20,000 mensuales con
+                    <strong>solo dos clientes activos</strong>. El margen es del 90% porque no hay costos de materiales
+                    ni desplazamiento significativo. La certificación Scrum Master justifica tarifas 50% por encima del
+                    promedio del mercado. Escalable a agencia sin límite de techo de ingresos.</div>
+                <div class="badges">
+                    <span class="badge" style="background:var(--green-l);color:var(--green-d)">Margen 90%</span>
+                    <span class="badge" style="background:var(--green-l);color:var(--green-d)">Sin límite de
+                        escala</span>
+                    <span class="badge" style="background:var(--green-l);color:var(--green-d)">Ingreso recurrente</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- #2 -->
+        <div class="card">
+            <div class="ch">
+                <div class="rk" style="background:var(--blue-l);color:var(--blue-d)">2</div>
+                <div class="ct">
+                    <div class="cn">Paws Club — Adiestramiento Premium (infraestructura ya construida)</div>
+                    <div class="cs">Habilidades: Canino + IA + Web · Inversión ya amortizada</div>
+                </div>
+                <div class="sc-wrap">
+                    <div class="sc" style="color:var(--blue)">8.8</div>
+                    <div class="sc-lbl">/ 10</div>
+                </div>
+            </div>
+            <div class="cb">
+                <div class="trio">
+                    <div class="m">
+                        <div class="ml">Inversión adicional</div>
+                        <div class="mv">$0</div>
+                        <div class="mn">Ya invertida</div>
+                    </div>
+                    <div class="m">
+                        <div class="ml">1er ingreso</div>
+                        <div class="mv">3–7 días</div>
+                        <div class="mn">Con 5 reseñas Google</div>
+                    </div>
+                    <div class="m">
+                        <div class="ml">Meta 20k</div>
+                        <div class="mv">2–3 clientes</div>
+                        <div class="mn">Paquetes $7,900–$11,900</div>
+                    </div>
+                </div>
+                <div class="bars">
+                    <div class="bl">Velocidad</div>
+                    <div class="bt">
+                        <div class="bf" style="width:90%;background:var(--blue)"></div>
+                    </div>
+                    <div class="bv">9/10</div>
+                    <div class="bl">Rentabilidad</div>
+                    <div class="bt">
+                        <div class="bf" style="width:80%;background:var(--blue)"></div>
+                    </div>
+                    <div class="bv">8/10</div>
+                    <div class="bl">ROI inversión</div>
+                    <div class="bt">
+                        <div class="bf" style="width:90%;background:var(--blue)"></div>
+                    </div>
+                    <div class="bv">9/10</div>
+                </div>
+                <div class="why">La infraestructura completa ya está pagada y operativa: dos landing pages, Facebook
+                    Pixel activo, perfiles en todas las plataformas. Al ser inversión ya amortizada, <strong>el ROI real
+                        es el más alto de la lista</strong>. La única variable que frena el primer ingreso es el tiempo,
+                    no el dinero. Cinco reseñas de Google esta semana cambian el escenario completamente.</div>
+                <div class="badges">
+                    <span class="badge" style="background:var(--blue-l);color:var(--blue-d)">Infraestructura
+                        lista</span>
+                    <span class="badge" style="background:var(--blue-l);color:var(--blue-d)">Ticket $7.9k–$11.9k</span>
+                    <span class="badge" style="background:var(--amber-l);color:var(--amber-d)">Requiere reseñas
+                        primero</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- #3 -->
+        <div class="card">
+            <div class="ch">
+                <div class="rk" style="background:var(--amber-l);color:var(--amber-d)">3</div>
+                <div class="ct">
+                    <div class="cn">Web Express + SEO Local para negocios CDMX</div>
+                    <div class="cs">Habilidades: Desarrollo web + IA · Ticket: $5,000–$8,000 por sitio</div>
+                </div>
+                <div class="sc-wrap">
+                    <div class="sc" style="color:var(--amber)">8.2</div>
+                    <div class="sc-lbl">/ 10</div>
+                </div>
+            </div>
+            <div class="cb">
+                <div class="trio">
+                    <div class="m">
+                        <div class="ml">Inversión</div>
+                        <div class="mv">$3,000</div>
+                        <div class="mn">MXN — la más baja</div>
+                    </div>
+                    <div class="m">
+                        <div class="ml">1er ingreso</div>
+                        <div class="mv">3–5 días</div>
+                        <div class="mn">El más rápido de todos</div>
+                    </div>
+                    <div class="m">
+                        <div class="ml">Meta 20k</div>
+                        <div class="mv">3–4 clientes</div>
+                        <div class="mn">Sitios + mantenimiento</div>
+                    </div>
+                </div>
+                <div class="bars">
+                    <div class="bl">Velocidad</div>
+                    <div class="bt">
+                        <div class="bf" style="width:100%;background:var(--amber)"></div>
+                    </div>
+                    <div class="bv">10/10</div>
+                    <div class="bl">Rentabilidad</div>
+                    <div class="bt">
+                        <div class="bf" style="width:80%;background:var(--amber)"></div>
+                    </div>
+                    <div class="bv">8/10</div>
+                    <div class="bl">ROI inversión</div>
+                    <div class="bt">
+                        <div class="bf" style="width:90%;background:var(--amber)"></div>
+                    </div>
+                    <div class="bv">9/10</div>
+                </div>
+                <div class="why">La inversión más baja de toda la lista y el primer ingreso más rápido posible. El
+                    mercado en CDMX es enorme — millones de negocios sin sitio web o con sitios obsoletos. La desventaja
+                    es que el ticket por proyecto es menor que la consultoría IA, lo que requiere más clientes para
+                    alcanzar la meta. <strong>Se complementa naturalmente con la Idea #1</strong> ofrecida al mismo
+                    cliente.</div>
+                <div class="badges">
+                    <span class="badge" style="background:var(--green-l);color:var(--green-d)">Primer ingreso más
+                        rápido</span>
+                    <span class="badge" style="background:var(--amber-l);color:var(--amber-d)">Requiere más
+                        clientes</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- #4 -->
+        <div class="card">
+            <div class="ch">
+                <div class="rk" style="background:var(--gray-l);color:var(--gray-d)">4</div>
+                <div class="ct">
+                    <div class="cn">Consultoría IA & Agilidad B2B (empresas medianas)</div>
+                    <div class="cs">Habilidades: IA + Scrum + Inglés · Proyectos de $15,000–$30,000 MXN</div>
+                </div>
+                <div class="sc-wrap">
+                    <div class="sc" style="color:var(--gray)">7.8</div>
+                    <div class="sc-lbl">/ 10</div>
+                </div>
+            </div>
+            <div class="cb">
+                <div class="trio">
+                    <div class="m">
+                        <div class="ml">Inversión</div>
+                        <div class="mv">$5,000</div>
+                        <div class="mn">MXN</div>
+                    </div>
+                    <div class="m">
+                        <div class="ml">1er ingreso</div>
+                        <div class="mv">15–21 días</div>
+                        <div class="mn">Ciclo de venta más largo</div>
+                    </div>
+                    <div class="m">
+                        <div class="ml">Meta 20k</div>
+                        <div class="mv">1 cliente</div>
+                        <div class="mn">Un solo proyecto grande</div>
+                    </div>
+                </div>
+                <div class="bars">
+                    <div class="bl">Velocidad</div>
+                    <div class="bt">
+                        <div class="bf" style="width:50%;background:var(--gray)"></div>
+                    </div>
+                    <div class="bv">5/10</div>
+                    <div class="bl">Rentabilidad</div>
+                    <div class="bt">
+                        <div class="bf" style="width:90%;background:var(--gray)"></div>
+                    </div>
+                    <div class="bv">9/10</div>
+                    <div class="bl">ROI inversión</div>
+                    <div class="bt">
+                        <div class="bf" style="width:80%;background:var(--gray)"></div>
+                    </div>
+                    <div class="bv">8/10</div>
+                </div>
+                <div class="why">El ticket más alto de todos los modelos, pero el ciclo de venta más lento.
+                    <strong>Ideal como siguiente paso</strong> una vez que la Idea #1 genera flujo de caja y casos de
+                    estudio reales con PyMEs pequeñas. Una empresa mediana que ve un portafolio de 3–4 PyMEs
+                    automatizadas con éxito es mucho más fácil de cerrar.</div>
+                <div class="badges">
+                    <span class="badge" style="background:var(--gray-l);color:var(--gray-d)">Ticket $15k–$30k</span>
+                    <span class="badge" style="background:var(--amber-l);color:var(--amber-d)">Ciclo 15–21 días</span>
+                    <span class="badge" style="background:var(--blue-l);color:var(--blue-d)">Inglés = ventaja
+                        real</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXTRA -->
+        <div class="sl">★ idea extra — inversión máxima $20,000 mxn · no mencionada antes</div>
+
+        <div class="card extra">
+            <div class="ch">
+                <div class="rk" style="background:var(--purple-l);color:var(--purple-d)">★</div>
+                <div class="ct">
+                    <div class="cn">Agencia de Gestión de Google Business Profile para Negocios Locales CDMX</div>
+                    <div class="cs">Servicio productizado · Alta demanda real · Competencia casi nula · Tu inglés es
+                        ventaja directa</div>
+                </div>
+                <div class="sc-wrap">
+                    <div class="sc" style="color:var(--purple)">9.0</div>
+                    <div class="sc-lbl">/ 10</div>
+                </div>
+            </div>
+            <div class="cb">
+                <div class="trio">
+                    <div class="m">
+                        <div class="ml">Inversión inicial</div>
+                        <div class="mv">$4,500</div>
+                        <div class="mn">De los 20k disponibles</div>
+                    </div>
+                    <div class="m">
+                        <div class="ml">1er ingreso</div>
+                        <div class="mv">5–10 días</div>
+                        <div class="mn">Cierre muy rápido</div>
+                    </div>
+                    <div class="m">
+                        <div class="ml">Con 8 clientes</div>
+                        <div class="mv">$20,000</div>
+                        <div class="mn">MXN recurrentes/mes</div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>El mercado desatendido:</strong> El 78% de las búsquedas locales en CDMX terminan en el
+                    perfil de Google Business — no en el sitio web. La mayoría de clínicas, restaurantes, despachos,
+                    spas y tiendas en Polanco, Condesa y Del Valle tienen perfiles incompletos, sin fotos actualizadas,
+                    sin respuestas a reseñas y sin publicaciones semanales. Eso les cuesta clientes todos los días — y
+                    la gran mayoría no sabe cómo resolverlo ni tiene tiempo para hacerlo.
+                </div>
+
+                <div class="bars">
+                    <div class="bl">Velocidad</div>
+                    <div class="bt">
+                        <div class="bf" style="width:90%;background:var(--purple)"></div>
+                    </div>
+                    <div class="bv">9/10</div>
+                    <div class="bl">Rentabilidad</div>
+                    <div class="bt">
+                        <div class="bf" style="width:90%;background:var(--purple)"></div>
+                    </div>
+                    <div class="bv">9/10</div>
+                    <div class="bl">ROI inversión</div>
+                    <div class="bt">
+                        <div class="bf" style="width:100%;background:var(--purple)"></div>
+                    </div>
+                    <div class="bv">10/10</div>
+                </div>
+
+                <div style="font-size:13px;font-weight:600;color:var(--dark);margin:12px 0 8px">Estructura del servicio
+                </div>
+                <div class="service-grid">
+                    <div class="svc">
+                        <div class="svc-name">Activación (único)</div>
+                        <div class="svc-price">$2,500 MXN</div>
+                        <div class="svc-desc">Optimización completa del perfil: fotos, descripción, categorías,
+                            horarios, primeras 5 publicaciones, respuesta a reseñas existentes.</div>
+                    </div>
+                    <div class="svc">
+                        <div class="svc-name">Gestión mensual</div>
+                        <div class="svc-price">$2,500 MXN/mes</div>
+                        <div class="svc-desc">4 publicaciones semanales, respuesta a todas las reseñas, reporte mensual
+                            de métricas generado con IA, actualización de fotos.</div>
+                    </div>
+                    <div class="svc">
+                        <div class="svc-name">Paquete anual</div>
+                        <div class="svc-price">$22,000 MXN</div>
+                        <div class="svc-desc">Activación + 12 meses de gestión con descuento. Ingreso garantizado por 12
+                            meses desde la firma del contrato.</div>
+                    </div>
+                </div>
+
+                <div style="font-size:13px;font-weight:600;color:var(--dark);margin:12px 0 6px">Desglose de inversión
+                    inicial ($4,500 MXN)</div>
+                <div class="inv-list">
+                    Herramientas de reportes — BrightLocal o GMB Everywhere: $600 &nbsp;·&nbsp;
+                    Dominio + landing page de servicios: $400 &nbsp;·&nbsp;
+                    Canva Pro para diseño de publicaciones: $250 &nbsp;·&nbsp;
+                    Google Ads localizado para primeros 3 clientes: $2,000 &nbsp;·&nbsp;
+                    Transporte para visitas de cierre: $1,250
+                </div>
+
+                <div class="why" style="margin-top:12px">
+                    <strong>Por qué esta idea es excepcionalmente buena para este perfil:</strong> El servicio se vende
+                    con una demostración de 10 minutos — le muestras al dueño del negocio su perfil actual versus cómo
+                    debería verse, y el cierre es casi inmediato porque el problema es visible y tangible. No requieres
+                    convencer a nadie de conceptos abstractos. Tu inglés fluido te permite captar negocios
+                    internacionales en Polanco — franquicias, restaurantes boutique y hoteles — que pagan tarifas en USD
+                    sin negociar. Con IA puedes automatizar el 70% de la producción de contenido: las publicaciones
+                    mensuales se generan en minutos con ChatGPT y Canva. <strong>Ocho clientes en retainer a $2,500/mes
+                        = $20,000 mensuales con apenas 10 horas de trabajo a la semana.</strong>
+                </div>
+                <div class="badges">
+                    <span class="badge" style="background:var(--purple-l);color:var(--purple-d)">Demo en 10
+                        minutos</span>
+                    <span class="badge" style="background:var(--purple-l);color:var(--purple-d)">70% automatizable con
+                        IA</span>
+                    <span class="badge" style="background:var(--purple-l);color:var(--purple-d)">Ingreso 100%
+                        recurrente</span>
+                    <span class="badge" style="background:var(--purple-l);color:var(--purple-d)">Inglés = clientes
+                        premium</span>
+                    <span class="badge" style="background:var(--purple-l);color:var(--purple-d)">10 hrs/semana
+                        operativo</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <strong>Estrategia óptima combinando los cuatro modelos:</strong> Las ideas #1 (Consultoría IA PyMEs) y ★
+            Extra (Google Business) son complementarias — el mismo cliente que contrata la gestión de su perfil de
+            Google es candidato directo para automatización con IA en el mes siguiente. Paws Club (#2) corre en paralelo
+            sin inversión adicional. La combinación de los tres en los primeros 90 días proyecta ingresos de
+            <strong>$35,000–$50,000 MXN mensuales</strong> antes de que cualquiera de ellos esté a máxima capacidad.
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <script>
+        new Chart(document.getElementById('mainChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Consultoría IA\nPyMEs (#1)', 'Paws Club\n(#2)', 'Web Express\n(#3)', 'IA B2B\n(#4)', 'Google Business\n(★ Extra)'],
+                datasets: [
+                    { label: 'Velocidad', data: [8, 9, 10, 5, 9], backgroundColor: '#1D9E75', borderRadius: 3, barPercentage: 0.65 },
+                    { label: 'Rentabilidad', data: [10, 8, 8, 9, 9], backgroundColor: '#378ADD', borderRadius: 3, barPercentage: 0.65 },
+                    { label: 'ROI por peso invertido', data: [10, 9, 9, 8, 10], backgroundColor: '#7F77DD', borderRadius: 3, barPercentage: 0.65 },
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '/10' } }
+                },
+                scales: {
+                    x: { ticks: { font: { size: 11 }, color: '#73726c' }, grid: { display: false }, border: { display: false } },
+                    y: { min: 0, max: 10, ticks: { stepSize: 2, font: { size: 11 }, color: '#73726c' }, grid: { color: 'rgba(0,0,0,0.05)' }, border: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

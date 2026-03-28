@@ -1,0 +1,373 @@
+/* ═══════════════════════════════════════════
+   SIGNALIA — Design System
+   Brand Guidelines v1.0 — 2026
+   ═══════════════════════════════════════════ */
+
+/* ── Fonts ──
+   Servidas localmente via next/font (layout.tsx).
+   CSS variables inyectadas en <html>:
+     --font-display  → General Sans   (next/font/local)
+     --font-body     → DM Sans        (next/font/google — self-hosted)
+     --font-mono     → JetBrains Mono (next/font/google — self-hosted)
+   Sin peticiones de red externas en runtime.
+── */
+
+/* ── Root Tokens ── */
+:root {
+  /* Primary */
+  --indigo: #2D2B6B;
+  --violeta: #534AB7;
+  --verde: #1D9E75;
+
+  /* Support */
+  --lavanda: #7F77DD;
+  --crema: #F5F4F0;
+  --carbon: #2C2C2A;
+
+  /* Extended */
+  --indigo-light: #3d3a8a;
+  --violeta-light: #6b63d4;
+  --verde-light: #25c48f;
+  --verde-bg: #e6f7f1;
+  --violeta-bg: #eeedfe;
+  --indigo-bg: #e8e8f4;
+
+  /* Surfaces */
+  --surface: #F5F4F0;
+  --surface-alt: #EFEEE9;
+  --card: #FFFFFF;
+  --card-hover: #FAFAF8;
+  --border: #D3D1C7;
+  --border-light: #E8E7E2;
+
+  /* Text */
+  --text-primary: #2C2C2A;
+  --text-secondary: #5A5A56;
+  --text-muted: #8A8A84;
+  --text-inverse: #FFFFFF;
+
+  /* Typography */
+  --font-display: 'General Sans', 'Inter', -apple-system, sans-serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(45,43,107,0.06);
+  --shadow-md: 0 4px 20px rgba(45,43,107,0.08);
+  --shadow-lg: 0 12px 40px rgba(45,43,107,0.12);
+  --shadow-glow-violeta: 0 0 40px rgba(83,74,183,0.2);
+  --shadow-glow-verde: 0 0 40px rgba(29,158,117,0.2);
+  --shadow-dark: 0 12px 40px rgba(0,0,0,0.30);
+  --shadow-glow-hero: 0 0 40px rgba(83,74,183,0.25);
+
+  /* Dark Hero Gradient */
+  --hero-dark: #1a1945;
+  --gradient-hero: linear-gradient(135deg, #1a1945 0%, var(--indigo) 40%, var(--violeta) 100%);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.10);
+  --glass-blur: 20px;
+  --glass-bg-fallback: rgba(26,25,69,0.95);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 150ms var(--ease-out);
+  --transition-normal: 300ms var(--ease-out);
+  --transition-slow: 500ms var(--ease-out);
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--crema);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ── Utilities ── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--violeta);
+  margin-bottom: var(--space-md);
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  color: var(--carbon);
+  margin-bottom: var(--space-md);
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.7;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ── Glassmorphism ── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass {
+    background: var(--glass-bg-fallback);
+  }
+}
+
+.glass-sm {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-sm {
+    background: var(--glass-bg-fallback);
+  }
+}
+
+/* ── Skip to Content ── */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  padding: 12px 24px;
+  background: var(--indigo);
+  color: var(--text-inverse);
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+
+.skip-to-content:focus {
+  top: 16px;
+}
+
+/* ── Language Switcher ── */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+}
+
+.lang-btn {
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  background: none;
+}
+
+.lang-btn:hover {
+  color: var(--violeta);
+}
+
+.lang-btn.lang-active {
+  background: var(--indigo);
+  color: var(--text-inverse);
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary {
+  background: var(--violeta);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(83,74,183,0.3);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.btn-primary:hover {
+  background: var(--violeta-light);
+  box-shadow: 0 6px 24px rgba(83,74,183,0.4);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--violeta);
+  border: 2px solid var(--violeta);
+}
+
+.btn-secondary:hover {
+  background: var(--violeta-bg);
+  transform: translateY(-2px);
+}
+
+.btn-dark {
+  background: var(--indigo);
+  color: var(--text-inverse);
+  box-shadow: 0 4px 16px rgba(45,43,107,0.3);
+}
+
+.btn-dark:hover {
+  background: var(--indigo-light);
+  box-shadow: 0 6px 24px rgba(45,43,107,0.4);
+  transform: translateY(-2px);
+}
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(83,74,183,0.15); }
+  50% { box-shadow: 0 0 40px rgba(83,74,183,0.3); }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-in {
+  animation: fadeInUp 0.7s var(--ease-out) both;
+}
+
+.animate-in-delay-1 { animation-delay: 0.1s; }
+.animate-in-delay-2 { animation-delay: 0.2s; }
+.animate-in-delay-3 { animation-delay: 0.3s; }
+.animate-in-delay-4 { animation-delay: 0.4s; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+}
