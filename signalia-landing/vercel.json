@@ -1,5 +1,5 @@
 {
-  "regions": ["iad1", "gru1"],
+  "regions": ["gru1"],
   "headers": [
     {
       "source": "/fonts/(.*)",
