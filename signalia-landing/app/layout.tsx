@@ -27,8 +27,9 @@ const generalSans = localFont({
     { path: "../public/fonts/GeneralSans-600.woff2", weight: "600", style: "normal" },
     { path: "../public/fonts/GeneralSans-700.woff2", weight: "700", style: "normal" },
   ],
-  display: "swap",
+  display: "optional",
   variable: "--font-display",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -86,6 +87,15 @@ export default function RootLayout({
       lang="es"
       className={`${generalSans.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
     >
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/GeneralSans-700.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
