@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import ClientIntlProvider from "./components/ClientIntlProvider";
 
 import esMessages from "../messages/es.json";
@@ -22,9 +21,8 @@ import StructuredData from "./components/StructuredData";
 type Lang = "es" | "en";
 const messages: Record<Lang, typeof esMessages> = { es: esMessages, en: enMessages };
 
-export default async function Home() {
-  const cookieStore = await cookies();
-  const lang = (cookieStore.get("NEXT_LOCALE")?.value || "es") as Lang;
+export default function Home() {
+  const lang = "es" as Lang;
   const dict = messages[lang] || messages["es"];
   const tTrust = dict.trust;
 
