@@ -11,7 +11,32 @@
       "Bash(curl -sL \"https://cdn.fontshare.com/wf/KWXO5X3YW4X7OLUMPO4X24HQJGJU7E2Q/VOWUQZS3YLP66ZHPTXAFSH6YACY4WJHT/NIQ54PVBBIWVK3PFSOIOUJSXIJ5WTNDP.woff2\" -o \"GeneralSans-700.woff2\")",
       "Bash(find /c/Users/mando/Signalia/signalia-landing -type f -name *.scss -o -name *.sass)",
       "Bash(grep -r \"Hybrid\\\\|Roadmap\\\\|design.*token\\\\|color.*variable\" /c/Users/mando/Signalia/signalia-landing/*.md)",
-      "Bash(wc -l /c/Users/mando/Signalia/signalia-landing/app/*.css)"
+      "Bash(wc -l /c/Users/mando/Signalia/signalia-landing/app/*.css)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(npx lighthouse:*)",
+      "Bash(node -e \":*)",
+      "Bash(pkill -f \"next start\")",
+      "Bash(git checkout:*)",
+      "Bash(git pull:*)",
+      "Bash(npx eslint:*)",
+      "Bash(./node_modules/.bin/eslint . --max-warnings 0)",
+      "Bash(node -e \"console.log\\(JSON.stringify\\(require\\(''./signalia-landing/messages/es.json''\\).business, null, 2\\)\\)\")",
+      "Bash(npx tsc:*)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)",
+      "Bash(taskkill /PID 8972 /F)",
+      "Bash(cmd /c \"taskkill /PID 8972 /F\")",
+      "Bash(cmd /c \"netstat -ano | findstr :3000\")",
+      "Bash(cmd /c \"netstat -ano | findstr :3000 | findstr LISTENING\")",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(cmd //c 'netstat -ano | findstr :3000')",
+      "Bash(cmd //c 'taskkill /PID 8972 /T /F')",
+      "Bash(npx next:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git remote:*)",
+      "Bash(git merge:*)"
     ]
   }
 }
