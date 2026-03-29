@@ -5,7 +5,7 @@ import esMessages from "../messages/es.json";
 import enMessages from "../messages/en.json";
 
 // Components
-import Navbar from "./components/Navbar";
+import NavbarShell from "./components/NavbarShell";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
 import Process from "./components/Process";
@@ -38,7 +38,7 @@ export default async function Home() {
       </a>
 
       {/* ═══ NAVBAR ═══ */}
-      <Navbar lang={lang} />
+      <NavbarShell dict={dict.nav} lang={lang} />
 
       <main id="main-content">
         {/* ═══ HERO ═══ */}
