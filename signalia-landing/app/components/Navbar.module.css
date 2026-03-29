@@ -31,15 +31,21 @@
 }
 
 /* Lang switcher — hero state (white on dark background) */
+.langSwitcher {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
 .langBtn {
   color: rgba(255, 255, 255, 0.85);
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.langBtnActive {
+/* Active: compound selector (0,2,0) beats .lang-btn.lang-active from globals */
+.langBtn.langBtnActive {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.6);
 }
 

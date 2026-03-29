@@ -102,16 +102,16 @@ export default function NavbarClient({ dict, lang }: NavbarClientProps) {
         </a>
       </div>
       <div className={styles.navRight}>
-        <div className="lang-switcher">
+        <div className={`lang-switcher ${inHero ? navStyles.langSwitcher : ""}`}>
           <button
-            className={`lang-btn ${inHero ? navStyles.langBtn : ""} ${lang === "es" ? "lang-active" : ""} ${lang === "es" && inHero ? navStyles.langBtnActive : ""}`}
+            className={`lang-btn ${inHero ? `${navStyles.langBtn} ${lang === "es" ? navStyles.langBtnActive : ""}` : lang === "es" ? "lang-active" : ""}`}
             onClick={() => handleLang("es")}
             aria-label={dict.lang.esAriaLabel}
           >
             {dict.lang.esLabel}
           </button>
           <button
-            className={`lang-btn ${inHero ? navStyles.langBtn : ""} ${lang === "en" ? "lang-active" : ""} ${lang === "en" && inHero ? navStyles.langBtnActive : ""}`}
+            className={`lang-btn ${inHero ? `${navStyles.langBtn} ${lang === "en" ? navStyles.langBtnActive : ""}` : lang === "en" ? "lang-active" : ""}`}
             onClick={() => handleLang("en")}
             aria-label={dict.lang.enAriaLabel}
           >
