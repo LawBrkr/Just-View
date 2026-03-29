@@ -3,10 +3,14 @@ import styles from "../page.module.css";
 export default function FloatingWhatsApp() {
   const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
   if (!number) return null;
-  
+
+  const message = encodeURIComponent(
+    "Hola, quiero más información sobre Signal y Alia para mi negocio. 🙌"
+  );
+
   return (
-    <a 
-      href={`https://wa.me/${number}`} 
+    <a
+      href={`https://wa.me/${number}?text=${message}`}
       target="_blank" 
       rel="noopener noreferrer" 
       className={styles.floatingWa} 
