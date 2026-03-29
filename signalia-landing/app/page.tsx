@@ -42,7 +42,7 @@ export default async function Home() {
 
       <main id="main-content">
         {/* ═══ HERO ═══ */}
-        <Hero />
+        <Hero dict={dict.hero} />
 
         {/* ═══ SERVICIOS ═══ */}
         <Services dict={dict.services} />
