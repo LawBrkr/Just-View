@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
 import styles from "../page.module.css";
+import type esMessages from "../../messages/es.json";
+
+type FAQDict = (typeof esMessages)["faq"];
 
 /* ── FAQ Accordion Item ── */
 function FAQItem({
@@ -30,19 +32,16 @@ function FAQItem({
   );
 }
 
-export default function FAQ() {
-  const t = useTranslations();
-  const faqItems = t.raw("faq.items") as Array<{ question: string; answer: string }>;
-
+export default function FAQ({ dict }: { dict: FAQDict }) {
   return (
     <section className={styles.faq} id="faq">
       <div className="container">
         <div className={styles.faqHeader}>
-          <span className="section-label">{t("faq.label")}</span>
-          <h2 className="section-title">{t("faq.title")}</h2>
+          <span className="section-label">{dict.label}</span>
+          <h2 className="section-title">{dict.title}</h2>
         </div>
         <div className={styles.faqList}>
-          {faqItems.map((item) => (
+          {dict.items.map((item) => (
             <FAQItem key={item.question} question={item.question} answer={item.answer} />
           ))}
         </div>

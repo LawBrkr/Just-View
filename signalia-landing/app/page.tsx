@@ -1,7 +1,4 @@
-import ClientIntlProvider from "./components/ClientIntlProvider";
-
 import esMessages from "../messages/es.json";
-import enMessages from "../messages/en.json";
 
 // Components
 import NavbarShell from "./components/NavbarShell";
@@ -16,19 +13,42 @@ import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
 import Trust from "./components/Trust";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
-import StructuredData from "./components/StructuredData";
 
-type Lang = "es" | "en";
-const messages: Record<Lang, typeof esMessages> = { es: esMessages, en: enMessages };
+// Static generation — landing has no dynamic data, revalidate daily.
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
+/* ── JSON-LD structured data (rendered inline as <script> on the server) ── */
+const business = esMessages.business;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: business.name,
+  description: business.description,
+  url: business.url,
+  email: business.email,
+  areaServed: {
+    "@type": "City",
+    name: business.city,
+  },
+  serviceArea: business.neighborhoods.map((n) => ({
+    "@type": "Place",
+    name: n,
+  })),
+  knowsLanguage: ["es", "en"],
+  priceRange: business.priceRange,
+};
 
 export default function Home() {
-  const lang = "es" as Lang;
-  const dict = messages[lang] || messages["es"];
-  const tTrust = dict.trust;
+  const dict = esMessages;
 
   return (
-    <ClientIntlProvider locale={lang} messages={dict} timeZone="America/Mexico_City">
-      <StructuredData dict={dict} />
+    <>
+      {/* JSON-LD structured data — server-rendered for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Skip to content */}
       <a href="#main-content" className="skip-to-content">
@@ -36,7 +56,7 @@ export default function Home() {
       </a>
 
       {/* ═══ NAVBAR ═══ */}
-      <NavbarShell dict={dict.nav} lang={lang} />
+      <NavbarShell dict={dict.nav} lang="es" />
 
       <main id="main-content">
         {/* ═══ HERO ═══ */}
@@ -49,19 +69,19 @@ export default function Home() {
         <Process dict={dict.process} />
 
         {/* ═══ RESULTADOS / MÉTRICAS ═══ */}
-        <Results />
+        <Results dict={dict.results} />
 
         {/* ═══ BUYER PERSONAS ═══ */}
         <Personas dict={dict.personas} />
 
         {/* ═══ TRUST ═══ */}
-        <Trust dict={tTrust} />
+        <Trust dict={dict.trust} />
 
         {/* ═══ PRECIOS ═══ */}
         <Pricing dict={dict.pricing} />
 
         {/* ═══ FAQ ═══ */}
-        <FAQ />
+        <FAQ dict={dict.faq} />
 
         {/* ═══ CTA FINAL ═══ */}
         <CTASection dict={dict.cta} />
@@ -72,6 +92,6 @@ export default function Home() {
 
       {/* ═══ FOOTER ═══ */}
       <Footer dict={dict.footer} />
-    </ClientIntlProvider>
+    </>
   );
 }
