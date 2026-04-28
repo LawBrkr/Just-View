@@ -25,7 +25,7 @@
       "faq": "FAQ"
     },
     "cta": {
-      "label": "Agenda tu demo"
+      "label": "Agendar diagnóstico"
     },
     "lang": {
       "esLabel": "Esp",
@@ -45,8 +45,8 @@
     },
     "subtitle": "Hacemos que te encuentren en Google y que tu negocio funcione solo. Visibilidad digital + automatización con IA para PyMEs en CDMX.",
     "cta": {
-      "primary": "Agenda tu demo gratuita",
-      "secondary": "Conoce nuestros servicios"
+      "primary": "Agendar diagnóstico",
+      "secondary": "Ver servicios"
     },
     "metric": {
       "value": "+450%",
@@ -122,7 +122,7 @@
     "steps": {
       "audit": {
         "title": "Auditoría en 10 minutos",
-        "description": "Te mostramos en una videollamada rápida cómo se ve tu negocio en Google hoy versus la competencia. Sin compromiso, sin costo."
+        "description": "Revisamos en 60 minutos cómo te ve Google hoy versus tu competencia. Solo 3 cupos disponibles por semana."
       },
       "plan": {
         "title": "Plan personalizado",
@@ -278,8 +278,8 @@
   "cta": {
     "label": "¿Listo para crecer?",
     "title": "En 10 minutos te mostramos cuántos clientes estás perdiendo hoy.",
-    "subtitle": "Agenda una auditoría gratuita de tu presencia digital. Sin compromiso, sin costo, sin letra chica.",
-    "button": "Agenda tu demo gratuita",
+    "subtitle": "Trabajamos con máximo 4 clientes nuevos por mes. Si hay cupo, agendamos esta semana.",
+    "button": "Agendar por WhatsApp",
     "email": "o escríbenos a hola@signalia.com.mx"
   },
   "footer": {

@@ -1,0 +1,326 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .wrap { padding: 1rem 0; }
+  .brand-tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; }
+  .brand-tab { padding: 6px 16px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); font-size: 13px; cursor: pointer; background: var(--color-background-primary); color: var(--color-text-secondary); transition: all 0.15s; }
+  .brand-tab.active { background: var(--color-background-secondary); color: var(--color-text-primary); border-color: var(--color-border-primary); font-weight: 500; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 1.5rem; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-text-secondary); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-auto { background: #1D9E75; }
+  .dot-human { background: #D85A30; }
+  .dot-review { background: #BA7517; }
+  .phase-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-tertiary); margin-bottom: 6px; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); margin-bottom: 10px; overflow: hidden; }
+  .card-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); }
+  .phase-num { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); min-width: 52px; }
+  .phase-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .phase-week { font-size: 11px; color: var(--color-text-tertiary); margin-left: auto; }
+  .rows { padding: 0 14px; }
+  .row { display: grid; grid-template-columns: 130px 1fr 90px; gap: 10px; align-items: start; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .row:last-child { border-bottom: none; }
+  .tool-badge { font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: var(--border-radius-md); display: inline-block; white-space: nowrap; }
+  .t-claude { background: #EEEDFE; color: #3C3489; }
+  .t-code { background: #E1F5EE; color: #085041; }
+  .t-anti { background: #E6F1FB; color: #0C447C; }
+  .t-drive { background: #EAF3DE; color: #27500A; }
+  .t-meta { background: #FAEEDA; color: #633806; }
+  .t-gemini { background: #FBEAF0; color: #72243E; }
+  .task-text { font-size: 13px; color: var(--color-text-primary); line-height: 1.5; }
+  .task-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+  .mode { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; justify-content: flex-end; }
+  .mode-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .auto { color: #0F6E56; }
+  .auto .mode-dot { background: #1D9E75; }
+  .human { color: #993C1D; }
+  .human .mode-dot { background: #D85A30; }
+  .review { color: #854F0B; }
+  .review .mode-dot { background: #BA7517; }
+  .summary { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px 16px; margin-top: 1.5rem; border: 0.5px solid var(--color-border-tertiary); }
+  .summary-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 10px; }
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 22px; font-weight: 500; }
+  .stat-label { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+  .num-auto { color: #0F6E56; }
+  .num-human { color: #993C1D; }
+  .num-review { color: #854F0B; }
+  .content { display: none; }
+  .content.visible { display: block; }
+</style>
+
+<div class="wrap">
+  <div class="brand-tabs">
+    <button class="brand-tab active" onclick="show('paws')">Paws Club</button>
+    <button class="brand-tab" onclick="show('signalia')">Signalia</button>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="dot dot-auto"></div> Autónomo</div>
+    <div class="legend-item"><div class="dot dot-review"></div> Tú revisas</div>
+    <div class="legend-item"><div class="dot dot-human"></div> Tú ejecutas</div>
+  </div>
+
+  <div id="paws" class="content visible">
+
+    <div class="phase-label">Fase 0 — Estrategia</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="phase-num">Fase 0</span>
+        <span class="phase-name">Definición de pilares y voz de marca</span>
+        <span class="phase-week">Semana 0</span>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="tool-badge t-claude">Claude.ai</span>
+          <div><div class="task-text">Genera pilares de contenido, tono y ejemplos de posts por pilar</div><div class="task-sub">Brief completo listo para alimentar a los agentes</div></div>
+          <div class="mode review"><div class="mode-dot"></div>Tú revisas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-label">Fase 1 — Infraestructura</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="phase-num">Fase 1</span>
+        <span class="phase-name">Setup de carpetas y estructura</span>
+        <span class="phase-week">Semana 1</span>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="tool-badge t-code">Claude Code</span>
+          <div><div class="task-text">Crea estructura de carpetas en Drive: /Queue, /Archive, /Briefs</div><div class="task-sub">Formato YYYY-MM-DD_paws_[tipo]</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-anti">Antigravity</span>
+          <div><div class="task-text">Configura el repo y conecta scripts de automatización</div><div class="task-sub">Terminal + permisos de Drive</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-label">Fase 2 — Investigación de tendencias</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="phase-num">Fase 2</span>
+        <span class="phase-name">Research de contenido semanal</span>
+        <span class="phase-week">Semana 1–2</span>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="tool-badge t-anti">Antigravity</span>
+          <div><div class="task-text">Agente rastrrea IG de competidores (Central Pets, Mumbii, Smart Dogs)</div><div class="task-sub">Browser agent extrae frecuencia, formatos y temas de mayor engagement</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-claude">Claude.ai</span>
+          <div><div class="task-text">Web search de tendencias: bienestar canino, comportamiento, temporada</div><div class="task-sub">Output: lista de 10 temas rankeados por relevancia al mes</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-drive">Google Drive</span>
+          <div><div class="task-text">Guarda el research como /Briefs/YYYY-MM_research.md</div></div>
+          <div class="mode review"><div class="mode-dot"></div>Tú revisas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-label">Fase 3 — Generación de contenido</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="phase-num">Fase 3</span>
+        <span class="phase-name">Producción de posts semanales</span>
+        <span class="phase-week">Semana 2</span>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="tool-badge t-claude">Claude.ai</span>
+          <div><div class="task-text">Genera calendario editorial semanal + copy de cada post</div><div class="task-sub">Caption, hashtags, CTA, día sugerido de publicación</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-anti">Antigravity</span>
+          <div><div class="task-text">Genera infografías y tarjetas visuales (SVG/React) para posts educativos</div><div class="task-sub">Paleta: tonos tierra, serif, espacio blanco</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-anti">Antigravity</span>
+          <div><div class="task-text">Screenshot automático del artifact → exporta como PNG</div><div class="task-sub">Script Puppeteer vía terminal de Antigravity</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-gemini">Gemini / Imagen</span>
+          <div><div class="task-text">Genera imágenes lifestyle de perros con prompts del brief</div><div class="task-sub">Para posts que requieren foto, no infografía</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-drive">Google Drive</span>
+          <div><div class="task-text">Todo el contenido va a /Queue/ con nombre YYYY-MM-DD_paws_post</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-label">Fase 4 — Staging y publicación</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="phase-num">Fase 4</span>
+        <span class="phase-name">Revisión y scheduling</span>
+        <span class="phase-week">Semana 3 · recurrente</span>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="tool-badge t-drive">Google Drive</span>
+          <div><div class="task-text">Revisas /Queue/ — apruebas o mandas feedback al agente</div><div class="task-sub">~30 min / semana</div></div>
+          <div class="mode review"><div class="mode-dot"></div>Tú revisas</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-meta">Meta Business Suite</span>
+          <div><div class="task-text">Programas los posts aprobados para la semana (gratis, web)</div><div class="task-sub">IG + Facebook simultáneo. TikTok: subida manual desde el PNG</div></div>
+          <div class="mode human"><div class="mode-dot"></div>Tú ejecutas</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="signalia" class="content">
+
+    <div class="phase-label">Fase 0 — Estrategia</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="phase-num">Fase 0</span>
+        <span class="phase-name">Pilares de contenido + LinkedIn setup</span>
+        <span class="phase-week">Semana 0</span>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="tool-badge t-claude">Claude.ai</span>
+          <div><div class="task-text">Define pilares (casos de uso, métricas, tips), tono y guía de voz</div><div class="task-sub">Dark-mode, glassmorphism, gradiente indigo, voz directa sin adornos</div></div>
+          <div class="mode review"><div class="mode-dot"></div>Tú revisas</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-meta">LinkedIn</span>
+          <div><div class="task-text">Creas la página de empresa de Signalia (one-time)</div><div class="task-sub">Claude genera el copy del perfil, tú lo pegas manualmente</div></div>
+          <div class="mode human"><div class="mode-dot"></div>Tú ejecutas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-label">Fase 1 — Infraestructura</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="phase-num">Fase 1</span>
+        <span class="phase-name">Setup técnico</span>
+        <span class="phase-week">Semana 1</span>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="tool-badge t-code">Claude Code</span>
+          <div><div class="task-text">Estructura /Queue, /Archive en Drive + scripts de naming</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-anti">Antigravity</span>
+          <div><div class="task-text">Conecta Vercel MCP → monitorea métricas de signalia-landing</div><div class="task-sub">Lighthouse scores, errores de deploy → input para posts de performance</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-label">Fase 2 — Investigación</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="phase-num">Fase 2</span>
+        <span class="phase-name">Research semanal de IA y PyMEs</span>
+        <span class="phase-week">Semana 1–2</span>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="tool-badge t-anti">Antigravity</span>
+          <div><div class="task-text">Browser agent monitorea lanzamientos de IA relevantes (OpenAI, Anthropic, Google)</div><div class="task-sub">Extrae lo que impacta a PyMEs CDMX específicamente</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-claude">Claude.ai</span>
+          <div><div class="task-text">Web search de keywords: automatización PyME, Google Business CDMX, ROI IA</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-label">Fase 3 — Generación de contenido</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="phase-num">Fase 3</span>
+        <span class="phase-name">Producción de posts IG + LinkedIn</span>
+        <span class="phase-week">Semana 2</span>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="tool-badge t-claude">Claude.ai</span>
+          <div><div class="task-text">Genera calendario + copy en dos versiones: IG (directo, emojis) y LinkedIn (formal, datos)</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-anti">Antigravity</span>
+          <div><div class="task-text">Genera tarjetas dark-mode con glassmorphism, métricas visualizadas, código formateado</div><div class="task-sub">Paleta indigo 135°, tipografía mono para código</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-anti">Antigravity</span>
+          <div><div class="task-text">Screenshot → PNG → guarda en /Queue/ automáticamente</div></div>
+          <div class="mode auto"><div class="mode-dot"></div>Autónomo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-label">Fase 4 — Staging y publicación</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="phase-num">Fase 4</span>
+        <span class="phase-name">Revisión y scheduling</span>
+        <span class="phase-week">Semana 3 · recurrente</span>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="tool-badge t-drive">Google Drive</span>
+          <div><div class="task-text">Revisas /Queue/ — apruebas o mandas feedback</div><div class="task-sub">~20 min / semana (contenido más técnico, más rápido de validar)</div></div>
+          <div class="mode review"><div class="mode-dot"></div>Tú revisas</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-meta">Meta Business Suite</span>
+          <div><div class="task-text">Programas posts de IG aprobados para la semana</div></div>
+          <div class="mode human"><div class="mode-dot"></div>Tú ejecutas</div>
+        </div>
+        <div class="row">
+          <span class="tool-badge t-meta">LinkedIn</span>
+          <div><div class="task-text">Copias el copy generado y publicas / programas desde LinkedIn</div><div class="task-sub">LinkedIn no tiene scheduler nativo gratuito — 2 min por post</div></div>
+          <div class="mode human"><div class="mode-dot"></div>Tú ejecutas</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Resumen de autonomía</div>
+    <div class="summary-grid">
+      <div class="stat"><div class="stat-num num-auto">~75%</div><div class="stat-label">Autónomo<br>(agentes)</div></div>
+      <div class="stat"><div class="stat-num num-review">~15%</div><div class="stat-label">Tú revisas<br>(Drive)</div></div>
+      <div class="stat"><div class="stat-num num-human">~10%</div><div class="stat-label">Tú ejecutas<br>(scheduling)</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(brand) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('visible'));
+  document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(brand).classList.add('visible');
+  event.target.classList.add('active');
+}
+</script>

@@ -1,36 +1,37 @@
 import styles from "../page.module.css";
 import esMessages from "../../messages/es.json";
+import { AnimateIn } from "./AnimateIn";
 
 type ProcessDict = typeof esMessages.process;
 
 export default function Process({ dict }: { dict: ProcessDict }) {
+  const steps = [
+    { num: "01", title: dict.steps.audit.title, desc: dict.steps.audit.description },
+    { num: "02", title: dict.steps.plan.title,  desc: dict.steps.plan.description  },
+    { num: "03", title: dict.steps.results.title, desc: dict.steps.results.description },
+  ];
+
   return (
     <section className={styles.process} id="proceso">
       <div className="container">
-        <div className={styles.processHeader}>
+        <AnimateIn className={styles.processHeader}>
           <span className="section-label">{dict.label}</span>
           <h2 className="section-title">{dict.title}</h2>
           <p className="section-subtitle">{dict.subtitle}</p>
-        </div>
+        </AnimateIn>
         <div className={styles.processSteps}>
-          <div className={styles.processStep}>
-            <div className={styles.processNum}>01</div>
-            <div className={styles.processLine} />
-            <h3>{dict.steps.audit.title}</h3>
-            <p>{dict.steps.audit.description}</p>
-          </div>
-          <div className={styles.processStep}>
-            <div className={styles.processNum}>02</div>
-            <div className={styles.processLine} />
-            <h3>{dict.steps.plan.title}</h3>
-            <p>{dict.steps.plan.description}</p>
-          </div>
-          <div className={styles.processStep}>
-            <div className={styles.processNum}>03</div>
-            <div className={styles.processLine} />
-            <h3>{dict.steps.results.title}</h3>
-            <p>{dict.steps.results.description}</p>
-          </div>
+          {/* Animated connector line */}
+          <div className={styles.processConnector} aria-hidden="true" />
+
+          {steps.map((step, i) => (
+            <AnimateIn key={step.num} delay={i * 120} className={styles.processStep}>
+              <div className={styles.processNumWrap}>
+                <div className={styles.processNum}>{step.num}</div>
+              </div>
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </AnimateIn>
+          ))}
         </div>
       </div>
     </section>

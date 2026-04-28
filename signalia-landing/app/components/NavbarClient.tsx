@@ -18,12 +18,10 @@ export default function NavbarClient({ dict, lang }: NavbarClientProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [inHero, setInHero] = useState(true);
 
-  // Sync dynamic classes onto the SSR-rendered <nav> and logo <a>
   useEffect(() => {
     const nav = document.getElementById("main-nav");
     const logo = document.getElementById("nav-logo");
     if (!nav || !logo) return;
-
     if (inHero) {
       nav.classList.add(navStyles.navHero);
       nav.classList.remove(styles.navScrolled);
@@ -39,9 +37,7 @@ export default function NavbarClient({ dict, lang }: NavbarClientProps) {
     const heroEl = document.getElementById("hero");
     if (heroEl) {
       const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => setInHero(entry.isIntersecting));
-        },
+        (entries) => { entries.forEach((entry) => setInHero(entry.isIntersecting)); },
         { root: null, rootMargin: "-80px 0px 0px 0px", threshold: 0 }
       );
       observer.observe(heroEl);
@@ -56,12 +52,7 @@ export default function NavbarClient({ dict, lang }: NavbarClientProps) {
   useEffect(() => {
     const handleSmoothScroll = (e: MouseEvent) => {
       const anchor = (e.target as HTMLElement).closest("a");
-      if (
-        anchor &&
-        anchor.hash &&
-        anchor.hash.startsWith("#") &&
-        anchor.origin === window.location.origin
-      ) {
+      if (anchor && anchor.hash && anchor.hash.startsWith("#") && anchor.origin === window.location.origin) {
         e.preventDefault();
         const el = document.querySelector(anchor.hash);
         if (el) {
@@ -79,7 +70,7 @@ export default function NavbarClient({ dict, lang }: NavbarClientProps) {
     router.refresh();
   };
 
-  const DEMO_LINK = "https://cal.com/signalia";
+  const DEMO_LINK = "https://wa.me/525666673841?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20de%20automatizaci%C3%B3n.";
   const linkClass = inHero ? navStyles.navLink : "";
 
   return (

@@ -308,6 +308,29 @@ button {
   transform: translateY(-2px);
 }
 
+/* ── Animated gradient CTA button ── */
+.btn-gradient {
+  background: linear-gradient(135deg, var(--violeta) 0%, #7b5ea7 40%, var(--verde) 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+  color: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(83,74,183,0.4);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn-gradient:hover {
+  box-shadow: 0 8px 32px rgba(83,74,183,0.55);
+  transform: translateY(-2px);
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-gradient {
+    animation: none;
+    background: var(--violeta);
+  }
+}
+
 /* ── Animations ── */
 @keyframes fadeInUp {
   from {
@@ -346,28 +369,4 @@ button {
 }
 
 @keyframes slideInRight {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.animate-in {
-  animation: fadeInUp 0.7s var(--ease-out) both;
-}
-
-.animate-in-delay-1 { animation-delay: 0.1s; }
-.animate-in-delay-2 { animation-delay: 0.2s; }
-.animate-in-delay-3 { animation-delay: 0.3s; }
-.animate-in-delay-4 { animation-delay: 0.4s; }
-
-/* ── Responsive ── */
-@media (max-width: 768px) {
-  .container {
-    padding: 0 var(--space-md);
-  }
-}
+  from { opacity: 0; trans

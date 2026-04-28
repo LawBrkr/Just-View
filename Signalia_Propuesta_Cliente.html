@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signalia — Propuesta</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo:       #534AB7;
+    --indigo-dark:  #2D2B6B;
+    --indigo-deep:  #1a1945;
+    --verde:        #1D9E75;
+    --verde-light:  #10B981;
+    --crema:        #F5F4F0;
+    --carbon:       #2C2C2A;
+    --muted:        rgba(255,255,255,0.55);
+    --glass:        rgba(255,255,255,0.07);
+    --glass-border: rgba(255,255,255,0.12);
+    --font:         'DM Sans', -apple-system, sans-serif;
+    --mono:         'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    background: var(--indigo-deep);
+    color: #fff;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* ── SLIDES ── */
+  .deck {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+    opacity: 0;
+    transform: translateX(40px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+
+  .slide.exit {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  /* Gradient background variations */
+  .slide-dark {
+    background: linear-gradient(135deg, #1a1945 0%, #2D2B6B 60%, #3a3490 100%);
+  }
+
+  .slide-darker {
+    background: linear-gradient(135deg, #0f0e2a 0%, #1a1945 60%, #2D2B6B 100%);
+  }
+
+  .slide-accent {
+    background: linear-gradient(135deg, #1a1945 0%, #1a3a30 50%, #0f2820 100%);
+  }
+
+  /* ── GLASS CARD ── */
+  .glass {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    padding: 28px 32px;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+    background: rgba(26,25,69,0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    padding: 10px 20px;
+  }
+
+  .nav button {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+    font-family: var(--font);
+  }
+
+  .nav button:hover { color: #fff; background: var(--glass); }
+
+  .slide-counter {
+    font-size: 13px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    min-width: 44px;
+    text-align: center;
+  }
+
+  .dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--glass-border);
+    transition: background 0.3s, width 0.3s;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background: var(--verde);
+    width: 20px;
+    border-radius: 3px;
+  }
+
+  /* ── KEYBOARD HINT ── */
+  .key-hint {
+    position: fixed;
+    top: 24px;
+    right: 28px;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .badge-verde { background: rgba(29,158,117,0.18); color: var(--verde-light); border: 1px solid rgba(29,158,117,0.3); }
+  .badge-indigo { background: rgba(83,74,183,0.25); color: #a8a3f7; border: 1px solid rgba(83,74,183,0.4); }
+  .badge-mono { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); border: 1px solid var(--glass-border); font-family: var(--mono); }
+
+  /* ── TYPOGRAPHY ── */
+  .title-xl {
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+
+  .title-lg {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .title-md {
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: clamp(15px, 1.6vw, 19px);
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 640px;
+    margin-bottom: 32px;
+  }
+
+  .accent { color: var(--verde-light); }
+  .accent-indigo { color: #a8a3f7; }
+
+  /* ── STAT ── */
+  .stat-num {
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 700;
+    color: var(--verde-light);
+    font-family: var(--mono);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* ── GRIDS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; width: 100%; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%; }
+
+  /* ── PROBLEM CARD ── */
+  .problem-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 14px;
+    padding: 20px 24px;
+  }
+
+  .problem-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .problem-text {
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ── SERVICE CARD ── */
+  .service-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .service-card.featured {
+    border-color: rgba(29,158,117,0.5);
+    background: rgba(29,158,117,0.08);
+  }
+
+  .service-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--verde-light);
+    margin-bottom: 10px;
+  }
+
+  .service-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .service-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .service-price span {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .service-features {
+    list-style: none;
+    margin-top: 14px;
+  }
+
+  .service-features li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    padding: 4px 0;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .service-features li::before {
+    content: "✓";
+    color: var(--verde-light);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── STEP ── */
+  .step {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 22px 20px;
+    text-align: center;
+  }
+
+  .step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(83,74,183,0.3);
+    border: 1px solid rgba(83,74,183,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #a8a3f7;
+    margin: 0 auto 12px;
+  }
+
+  .step-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .step-desc  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .step-time  { font-size: 11px; font-family: var(--mono); color: var(--verde-light); margin-top: 8px; }
+
+  /* ── WHY ROW ── */
+  .why-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .why-col { padding: 20px 24px; }
+  .why-col:first-child { border-right: 1px solid rgba(255,255,255,0.1); }
+  .why-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .why-item  { font-size: 13px; line-height: 1.5; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); }
+  .why-item:last-child { border-bottom: none; }
+  .why-item.bad { color: rgba(255,255,255,0.45); text-decoration: line-through; }
+
+  /* ── RESULT BAR ── */
+  .result-bar {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .result-bar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+
+  .result-bar-label { color: rgba(255,255,255,0.8); }
+  .result-bar-value { color: var(--verde-light); font-weight: 700; font-family: var(--mono); }
+
+  .result-bar-track {
+    height: 8px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .result-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--indigo), var(--verde-light));
+    border-radius: 4px;
+    transition: width 1s ease;
+  }
+
+  /* ── CTA SLIDE ── */
+  .cta-box {
+    background: rgba(29,158,117,0.12);
+    border: 1px solid rgba(29,158,117,0.35);
+    border-radius: 20px;
+    padding: 40px 48px;
+    text-align: center;
+    max-width: 640px;
+    width: 100%;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .btn:hover { transform: translateY(-2px); opacity: 0.92; }
+  .btn-verde { background: var(--verde); color: #fff; }
+  .btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+  /* ── QUOTE ── */
+  .quote {
+    font-size: 18px;
+    font-style: italic;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .quote::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 3px;
+    background: var(--verde);
+    border-radius: 2px;
+  }
+
+  /* ── LOGO ── */
+  .logo {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 32px;
+  }
+
+  .logo span { color: var(--verde-light); }
+
+  /* ── TWO COLUMN LAYOUT ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--verde);
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  /* ── ORBS (decorative) ── */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    opacity: 0.18;
+  }
+
+  .orb-1 { width: 400px; height: 400px; background: var(--indigo); top: -100px; right: -100px; }
+  .orb-2 { width: 300px; height: 300px; background: var(--verde); bottom: -80px; left: -80px; }
+
+  /* ── PROGRESS BAR ── */
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--verde);
+    transition: width 0.4s ease;
+    z-index: 200;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon { color: var(--verde-light); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+  .tag-mono {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress" id="progress"></div>
+
+<!-- KEYBOARD HINT -->
+<div class="key-hint">← → para navegar &nbsp;|&nbsp; ESC para salir</div>
+
+<!-- DECK -->
+<div class="deck" id="deck">
+
+  <!-- ═══ SLIDE 1: PORTADA ═══ -->
+  <div class="slide slide-darker active" id="slide-0">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div style="text-align:center; position:relative; z-index:1;">
+      <div class="logo">SIGNA<span>LIA</span></div>
+      <div class="badge badge-mono">Consultoría Tech · CDMX · 2026</div>
+      <div class="title-xl" style="max-width:700px; margin:0 auto 20px;">
+        Tu señal más fuerte<br>en lo digital.
+      </div>
+      <p class="subtitle" style="margin:0 auto; text-align:center;">
+        Hacemos que te encuentren en Google y que tu negocio funcione solo.<br>
+        Visibilidad digital + automatización con IA para PyMEs en CDMX.
+      </p>
+      <div style="display:flex; justify-content:center; gap:32px; margin-top:40px;">
+        <div>
+          <div class="stat-num">+34%</div>
+          <div class="stat-label">más llamadas sin invertir en ads</div>
+        </div>
+        <div style="width:1px; background:rgba(255,255,255,0.1);"></div>
+        <div>
+          <div class="stat-num">0</div>
+          <div class="stat-label">mensajes manuales de WhatsApp</div>
+        </div>
+        <div style="width:1px; background:rgba(255,255,255,0.1);"></div>
+        <div>
+          <div class="stat-num">7 días</div>
+          <div class="stat-label">primera entrega garantizada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 2: EL PROBLEMA ═══ -->
+  <div class="slide slide-dark" id="slide-1">
+    <div style="width:100%;">
+      <div class="badge badge-indigo">El problema</div>
+      <div class="title-lg">Lo que le está costando dinero<br>a tu negocio <span class="accent">ahora mismo</span></div>
+      <div class="grid-2" style="margin-top:8px;">
+        <div class="problem-card">
+          <span class="problem-icon">📱</span>
+          <div class="problem-text">Tu equipo responde <strong>30–50 mensajes de WhatsApp</strong> al día a mano. Son horas que no le venden a nadie más.</div>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">📍</span>
+          <div class="problem-text">Tu perfil de Google Business tiene <strong>menos reseñas y peor posición</strong> que competidores con peor servicio que el tuyo.</div>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">📊</span>
+          <div class="problem-text">No sabes cuántas personas <strong>llamaron desde Google y no contestaron</strong>, ni cuánto te cuesta conseguir un cliente.</div>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">🔄</span>
+          <div class="problem-text">Tareas que se repiten todos los días — reportes, seguimientos, respuestas — <strong>las hace un humano cuando podría hacerlas un sistema</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 3: LA SOLUCIÓN ═══ -->
+  <div class="slide slide-dark" id="slide-2">
+    <div class="two-col">
+      <div>
+        <div class="badge badge-verde">La solución</div>
+        <div class="divider"></div>
+        <div class="title-lg">Construimos el sistema.<br><span class="accent">Tú te quedas con él.</span></div>
+        <p class="subtitle">No somos una agencia que te cobra para siempre. Diseñamos, construimos y entregamos sistemas que eliminan cuellos de botella y generan resultados medibles. Cuando terminamos, el sistema es tuyo.</p>
+        <ul class="checklist">
+          <li><span class="check-icon">✓</span> Primera entrega en 7 días hábiles</li>
+          <li><span class="check-icon">✓</span> Resultados medibles en 30 días</li>
+          <li><span class="check-icon">✓</span> Documentación completa en la entrega</li>
+          <li><span class="check-icon">✓</span> Sin dependencia de nosotros para operar</li>
+        </ul>
+      </div>
+      <div>
+        <div class="glass" style="padding: 32px;">
+          <div style="font-family: var(--mono); font-size:11px; color: var(--verde-light); letter-spacing:0.1em; margin-bottom:20px; text-transform:uppercase;">Dos servicios. Un objetivo.</div>
+          <div style="margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.08);">
+            <div style="font-size:18px; font-weight:700; margin-bottom:6px;">Signal <span style="font-size:13px; color:var(--muted); font-weight:400;">— Visibilidad</span></div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.5;">Google Business optimizado. Más reseñas. Mejor posición en Maps. Te encuentran antes que a tu competencia.</div>
+          </div>
+          <div>
+            <div style="font-size:18px; font-weight:700; margin-bottom:6px;">Alia <span style="font-size:13px; color:var(--muted); font-weight:400;">— Automatización</span></div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.5;">Agentes IA que responden clientes, generan reportes y eliminan tareas repetitivas de tu operación.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 4: RESULTADOS ═══ -->
+  <div class="slide slide-accent" id="slide-3">
+    <div style="width:100%;">
+      <div class="badge badge-verde">Resultados reales</div>
+      <div class="title-lg">Números que generamos<br>para negocios como el tuyo</div>
+      <div class="grid-2" style="gap:40px; margin-top:8px;">
+        <div>
+          <div class="result-bar">
+            <div class="result-bar-header">
+              <span class="result-bar-label">Llamadas desde Google</span>
+              <span class="result-bar-value">+34%</span>
+            </div>
+            <div class="result-bar-track"><div class="result-bar-fill" style="width:84%"></div></div>
+            <div style="font-size:11px; color:var(--muted); margin-top:4px;">en 60 días · sin invertir en ads</div>
+          </div>
+          <div class="result-bar">
+            <div class="result-bar-header">
+              <span class="result-bar-label">Mensajes respondidos automáticamente</span>
+              <span class="result-bar-value">100%</span>
+            </div>
+            <div class="result-bar-track"><div class="result-bar-fill" style="width:100%"></div></div>
+            <div style="font-size:11px; color:var(--muted); margin-top:4px;">tienda en Condesa · 40 mensajes/día → 0 manuales</div>
+          </div>
+          <div class="result-bar">
+            <div class="result-bar-header">
+              <span class="result-bar-label">Reseñas en Google Business</span>
+              <span class="result-bar-value">+280%</span>
+            </div>
+            <div class="result-bar-track"><div class="result-bar-fill" style="width:70%"></div></div>
+            <div style="font-size:11px; color:var(--muted); margin-top:4px;">de 12 a 46 reseñas en 8 semanas</div>
+          </div>
+          <div class="result-bar">
+            <div class="result-bar-header">
+              <span class="result-bar-label">Tiempo en tareas repetitivas</span>
+              <span class="result-bar-value">-3 hrs/día</span>
+            </div>
+            <div class="result-bar-track"><div class="result-bar-fill" style="width:60%"></div></div>
+            <div style="font-size:11px; color:var(--muted); margin-top:4px;">mismas ventas · sin personal adicional</div>
+          </div>
+        </div>
+        <div>
+          <div class="glass" style="height:100%; display:flex; flex-direction:column; justify-content:center;">
+            <div style="font-size:11px; font-family:var(--mono); color:var(--verde-light); letter-spacing:0.1em; margin-bottom:20px; text-transform:uppercase;">Caso de uso real</div>
+            <p class="quote" style="margin-bottom:20px;">
+              "Una tienda en Condesa respondía 40 mensajes de WhatsApp al día. Con el agente de Signalia: 0 mensajes manuales. Mismas ventas. 3 horas libres."
+            </p>
+            <div style="font-size:12px; color:var(--muted);">
+              Tiempo de implementación: <strong style="color:#fff;">12 días</strong><br>
+              Inversión: <strong style="color:#fff;">$12,000 MXN</strong><br>
+              ROI en primer mes: <strong style="color:var(--verde-light);">positivo</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 5: SERVICIOS Y PRECIOS ═══ -->
+  <div class="slide slide-dark" id="slide-4">
+    <div style="width:100%;">
+      <div class="badge badge-indigo">Planes y precios</div>
+      <div class="title-lg">Inversión clara, <span class="accent">resultados medibles</span></div>
+      <div class="grid-3" style="margin-top:8px;">
+        <div class="service-card">
+          <div class="service-label">Entrada</div>
+          <div class="service-name">Auditoría + Diagnóstico</div>
+          <div class="service-desc">Revisamos tu operación, identificamos las 5–10 oportunidades de automatización con mayor ROI y te entregamos el plan.</div>
+          <div class="service-price">$3,500 <span>MXN · pago único</span></div>
+          <ul class="service-features">
+            <li>Diagnóstico de 60 min</li>
+            <li>Reporte con oportunidades priorizadas</li>
+            <li>Descontable del proyecto si continúas</li>
+            <li>Entrega en 5 días hábiles</li>
+          </ul>
+        </div>
+        <div class="service-card featured">
+          <div class="service-label" style="color:var(--verde-light);">⭐ Más solicitado</div>
+          <div class="service-name">Automatización de Canal</div>
+          <div class="service-desc">Implementamos un agente o flujo automatizado para un proceso concreto: WhatsApp, Google Business, reportes, CRM.</div>
+          <div class="service-price">$8,000 – $18,000 <span>MXN · proyecto</span></div>
+          <ul class="service-features">
+            <li>Sistema en producción y funcionando</li>
+            <li>Documentación completa</li>
+            <li>Video walkthrough de la entrega</li>
+            <li>1 semana de soporte post-entrega</li>
+            <li>Entrega en 2–4 semanas</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="service-label">Mensual</div>
+          <div class="service-name">Retainer de Optimización</div>
+          <div class="service-desc">Mantenemos, ajustamos y escalamos los sistemas entregados. Incluye 1 mejora mensual y reporte de métricas.</div>
+          <div class="service-price">$5,000 – $10,000 <span>MXN / mes</span></div>
+          <ul class="service-features">
+            <li>Soporte reactivo incluido</li>
+            <li>1–2 mejoras por mes</li>
+            <li>Reporte mensual de métricas</li>
+            <li>Reunión de revisión mensual</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 6: CÓMO TRABAJAMOS ═══ -->
+  <div class="slide slide-darker" id="slide-5">
+    <div style="width:100%; text-align:center;">
+      <div class="badge badge-indigo">Proceso</div>
+      <div class="title-lg">Cómo trabajamos</div>
+      <p class="subtitle" style="margin:0 auto 32px;">Sin sorpresas. Sin scope creep. Sin dependencia.</p>
+      <div class="grid-4">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Diagnóstico</div>
+          <div class="step-desc">Escuchamos el problema real. No vendemos antes de entender.</div>
+          <div class="step-time">Día 1–2</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Scoping</div>
+          <div class="step-desc">Entregamos un brief escrito con alcance, costo y fecha exacta antes de comenzar.</div>
+          <div class="step-time">Día 2–3</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Construcción</div>
+          <div class="step-desc">Desarrollamos el sistema con updates cada 3 días. Sin silencio post-firma.</div>
+          <div class="step-time">Semana 1–3</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-title">Entrega + Handoff</div>
+          <div class="step-desc">El sistema es tuyo. Código, documentación, video. Sin dependencia de nosotros.</div>
+          <div class="step-time">Semana 2–4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 7: POR QUÉ SIGNALIA ═══ -->
+  <div class="slide slide-dark" id="slide-6">
+    <div style="width:100%;">
+      <div class="badge badge-verde">Diferenciadores</div>
+      <div class="title-lg">Por qué Signalia<br>y no una agencia</div>
+      <div class="why-row" style="margin-top:16px;">
+        <div class="why-col">
+          <div class="why-label" style="color:rgba(255,255,255,0.3);">❌ Agencias tradicionales</div>
+          <div class="why-item bad">Cobran retainer aunque no entreguen resultados</div>
+          <div class="why-item bad">El sistema es de ellos — si te vas, pierdes todo</div>
+          <div class="why-item bad">Promesas genéricas sin métricas claras</div>
+          <div class="why-item bad">Tardan meses en entregar la primera versión</div>
+          <div class="why-item bad">Hablan de "estrategia", no muestran sistemas reales</div>
+        </div>
+        <div class="why-col">
+          <div class="why-label" style="color:var(--verde-light);">✓ Signalia</div>
+          <div class="why-item">Scoping pagado que aplica al proyecto si continúas</div>
+          <div class="why-item">El sistema es tuyo desde el día 1 de la entrega</div>
+          <div class="why-item">Métricas de éxito definidas antes de comenzar</div>
+          <div class="why-item">Primera entrega en 7 días hábiles</div>
+          <div class="why-item">Código real, documentación real, resultados reales</div>
+        </div>
+      </div>
+      <div style="margin-top:24px;">
+        <p class="quote">
+          "No somos una agencia. Construimos el sistema, te lo entregamos documentado, y puedes operarlo sin nosotros. Si no encuentras al menos 3 oportunidades accionables en la auditoría, no te cobramos."
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 8: PRÓXIMOS PASOS ═══ -->
+  <div class="slide slide-darker" id="slide-7">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div style="text-align:center; position:relative; z-index:1; width:100%; max-width:680px;">
+      <div class="badge badge-verde">Próximos pasos</div>
+      <div class="title-lg">¿Arrancamos esta semana?</div>
+      <div class="cta-box" style="margin:0 auto;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:28px; text-align:left;">
+          <div class="glass" style="padding:18px 20px;">
+            <div style="font-family:var(--mono); font-size:10px; color:var(--verde-light); letter-spacing:0.1em; margin-bottom:8px; text-transform:uppercase;">Opción 1 — Rápido</div>
+            <div style="font-size:16px; font-weight:700; margin-bottom:4px;">Auditoría</div>
+            <div style="font-size:22px; font-weight:700; color:var(--verde-light);">$3,500 <span style="font-size:12px; color:var(--muted); font-weight:400;">MXN</span></div>
+            <div style="font-size:12px; color:var(--muted); margin-top:6px;">Diagnóstico completo en 5 días. Entiendes exactamente qué automatizar primero.</div>
+          </div>
+          <div class="glass" style="padding:18px 20px; border-color:rgba(29,158,117,0.4);">
+            <div style="font-family:var(--mono); font-size:10px; color:var(--verde-light); letter-spacing:0.1em; margin-bottom:8px; text-transform:uppercase;">Opción 2 — Directo</div>
+            <div style="font-size:16px; font-weight:700; margin-bottom:4px;">Automatización</div>
+            <div style="font-size:22px; font-weight:700; color:var(--verde-light);">$8,000+ <span style="font-size:12px; color:var(--muted); font-weight:400;">MXN</span></div>
+            <div style="font-size:12px; color:var(--muted); margin-top:6px;">Si ya tienes claro el problema. Sistema entregado en 2–3 semanas.</div>
+          </div>
+        </div>
+        <div style="font-size:14px; color:var(--muted); margin-bottom:20px;">
+          El siguiente paso es una llamada de 20 minutos para<br>identificar el cuello de botella más caro de tu operación.
+        </div>
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+          <a href="https://cal.com/signalia/demo" class="btn btn-verde">Agendar llamada →</a>
+          <a href="https://wa.me/525666673841" class="btn btn-outline">WhatsApp directo</a>
+        </div>
+        <div style="margin-top:20px; font-size:12px; color:var(--muted);">
+          hola@signalia.com.mx &nbsp;·&nbsp; mxsignal-ia.vercel.app
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav">
+  <button onclick="prevSlide()" title="Anterior">←</button>
+  <div class="dots" id="dots"></div>
+  <button onclick="nextSlide()" title="Siguiente">→</button>
+  <span class="slide-counter" id="counter">1 / 8</span>
+</div>
+
+<script>
+  const TOTAL = 8;
+  let current = 0;
+
+  function getSlides() { return document.querySelectorAll('.slide'); }
+  function getDots()   { return document.querySelectorAll('.dot'); }
+
+  function buildDots() {
+    const c = document.getElementById('dots');
+    for (let i = 0; i < TOTAL; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goTo(i);
+      c.appendChild(d);
+    }
+  }
+
+  function goTo(n) {
+    const slides = getSlides();
+    slides[current].classList.remove('active');
+    slides[current].classList.add('exit');
+    setTimeout(() => slides[current - (n > current ? 0 : 0)].classList.remove('exit'), 400);
+
+    current = n;
+
+    slides.forEach((s, i) => {
+      s.classList.remove('active', 'exit');
+      if (i === current) s.classList.add('active');
+    });
+
+    getDots().forEach((d, i) => d.classList.toggle('active', i === current));
+    document.getElementById('counter').textContent = `${current + 1} / ${TOTAL}`;
+    document.getElementById('progress').style.width = `${((current + 1) / TOTAL) * 100}%`;
+
+    // Animate bars on results slide
+    if (current === 3) animateBars();
+  }
+
+  function nextSlide() { if (current < TOTAL - 1) goTo(current + 1); }
+  function prevSlide() { if (current > 0) goTo(current - 1); }
+
+  function animateBars() {
+    const fills = document.querySelectorAll('#slide-3 .result-bar-fill');
+    fills.forEach(f => {
+      const target = f.style.width;
+      f.style.width = '0';
+      setTimeout(() => { f.style.width = target; }, 100);
+    });
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'Escape') {} // do nothing
+    e.preventDefault();
+  });
+
+  // Touch support
+  let startX = 0;
+  document.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) { dx < 0 ? nextSlide() : prevSlide(); }
+  });
+
+  // Init
+  buildDots();
+  document.getElementById('progress').style.width = `${(1 / TOTAL) * 100}%`;
+</script>
+</body>
+</html>

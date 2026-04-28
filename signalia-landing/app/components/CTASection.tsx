@@ -3,9 +3,9 @@ import esMessages from "../../messages/es.json";
 
 type CTADict = typeof esMessages.cta;
 
-export default function CTASection({ dict }: { dict: CTADict }) {
-  const DEMO_LINK = "https://cal.com/signalia";
+const DEMO_LINK = "https://wa.me/525666673841?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20de%20automatizaci%C3%B3n.";
 
+export default function CTASection({ dict }: { dict: CTADict }) {
   return (
     <section className={styles.cta} id="contacto">
       <div className="container">
@@ -19,13 +19,10 @@ export default function CTASection({ dict }: { dict: CTADict }) {
               href={DEMO_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary"
+              className="btn btn-gradient"
               style={{ fontSize: "17px", padding: "18px 36px" }}
             >
               {dict.button}
-              <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
             </a>
             <a href="mailto:hola@signalia.com.mx" className={styles.ctaEmail}>
               {dict.email}
