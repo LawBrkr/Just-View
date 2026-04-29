@@ -1255,4 +1255,108 @@
 .footerCol span {
   display: block;
   font-size: 14px;
-  color: rgba(255, 255, 25
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+  transition: color var(--transition-fast);
+}
+
+.footerCol a:hover {
+  color: var(--lavanda);
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-lg);
+}
+
+.footerBottom p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.footerSlogan {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .heroVisual {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricingGrid {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .pricingFeatured {
+    transform: none;
+    order: -1;
+  }
+
+  .pricingFeatured:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: clamp(32px, 8vw, 48px);
+  }
+
+  .heroStats {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .heroStatDivider {
+    width: 40px;
+    height: 1px;
+  }
+
+  .processSteps {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .personasGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .footerMain {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footerLinks {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
